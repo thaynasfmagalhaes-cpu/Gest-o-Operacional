@@ -17,7 +17,7 @@
       <ul><li>Rastreabilidade por TAG</li><li>Status operacional atualizado</li><li>Histórico completo por ciclo</li></ul>
     </div>
     <div class="login-card">
-      <div class="login-card-brand"><img src="ocyan-logo.svg" alt="Ocyan"><span>Portal operacional</span></div>
+      <div class="login-card-brand"><img src="ocyan-logo-white.svg" alt="Ocyan"><span>Portal operacional</span></div>
       <div class="auth-tabs" role="tablist" aria-label="Opções de acesso">
         <button class="auth-tab active" type="button" role="tab" aria-selected="true" data-auth="login">Entrar</button>
         <button class="auth-tab" type="button" role="tab" aria-selected="false" data-auth="register">Cadastrar</button>
@@ -76,6 +76,16 @@
         <section id="dashboard" class="view-section">
           <section class="welcome-banner">
             <div><span class="eyebrow lime">CENTRO DE CONTROLE OFFSHORE</span><h2 id="welcomeTitle">Olá, vamos acompanhar a operação.</h2><p>Visibilidade em tempo real para decisões seguras, ágeis e conectadas ao mar.</p></div>
+          </section>
+          <section class="guardian-command">
+            <div class="guardian-heading"><div><span class="guardian-orb">✦</span><div><span class="eyebrow">AGENTE GUARDIÃO OPERACIONAL</span><h2>Central de Comando</h2><p>Análise automática de riscos, gargalos e próximas ações.</p></div></div><span id="guardianUpdated" class="guardian-updated">Analisando operação…</span></div>
+            <div class="guardian-kpis">
+              <article><span>Processos ativos</span><strong id="guardianActive">—</strong><small>em acompanhamento</small></article>
+              <article class="guardian-critical"><span>Risco crítico</span><strong id="guardianCritical">—</strong><small>exigem prioridade</small></article>
+              <article class="guardian-warning"><span>Parados +24h</span><strong id="guardianStopped">—</strong><small>sem movimentação</small></article>
+              <article><span>Pendência documental</span><strong id="guardianDocs">—</strong><small>OS, romaneio, RFID ou fiscal</small></article>
+            </div>
+            <div class="guardian-grid"><article class="guardian-panel"><div class="guardian-panel-title"><span>Prioridades recomendadas</span><small>ordenadas por risco</small></div><div id="guardianPriorities" class="guardian-priorities"><p>Analisando acompanhamentos…</p></div></article><article class="guardian-panel"><div class="guardian-panel-title"><span>Gargalos do fluxo</span><small>concentração por etapa</small></div><div id="guardianBottlenecks" class="guardian-bottlenecks"></div></article></div>
           </section>
           <div class="summary-grid">
             <button class="summary-card" data-summary-filter="active"><span>Em acompanhamento</span><strong id="totalActive">0</strong><small>Ciclos ativos <b>→</b></small></button>
