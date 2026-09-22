@@ -56,7 +56,6 @@
       <nav>
         <button class="nav-item active" data-view="dashboard"><span>▦</span>Painel geral</button>
         <button class="nav-item" data-view="tracking"><span>⇄</span>Acompanhamentos</button>
-        <button class="nav-item" data-view="history"><span>◷</span>Histórico geral</button>
         <button class="nav-item" data-view="new"><span>＋</span>Novo acompanhamento</button>
         <button id="profileNav" class="nav-item" type="button"><span>◉</span>Meu perfil</button>
         <a id="adminSettingsLink" class="nav-item" href="/ux-agent.html"><span>⚙</span>Painel administrativo <b id="adminAlertBadge" class="nav-badge hidden">0</b></a>
@@ -79,7 +78,7 @@
             <div><span class="eyebrow lime">CENTRO DE CONTROLE OFFSHORE</span><h2 id="welcomeTitle">Olá, vamos acompanhar a operação.</h2><p>Visibilidade em tempo real para decisões seguras, ágeis e conectadas ao mar.</p></div>
           </section>
           <section class="guardian-command">
-            <div class="guardian-heading"><div><span class="guardian-orb">✦</span><div><span class="eyebrow">INTELIGÊNCIA OPERACIONAL</span><h2>Central de Comando</h2><p>Análise automática de riscos, gargalos e próximas ações.</p></div></div><span id="guardianUpdated" class="guardian-updated">Analisando operação…</span></div>
+            <div class="guardian-heading"><div><span class="guardian-orb">✦</span><div><h2>Central de Comando</h2><p>Análise automática de riscos, gargalos e próximas ações.</p></div></div><span id="guardianUpdated" class="guardian-updated">Analisando operação…</span></div>
             <div class="guardian-kpis">
               <article><span>Processos ativos</span><strong id="guardianActive">—</strong><small>em acompanhamento</small></article>
               <article class="guardian-critical"><span>Risco crítico</span><strong id="guardianCritical">—</strong><small>exigem prioridade</small></article>
@@ -96,13 +95,18 @@
           </div>
           <section class="insights-grid">
             <article class="surface chart-surface">
-              <div class="section-heading"><div><span class="eyebrow">DESEMPENHO HISTÓRICO</span><h2>Evolução geral das movimentações</h2></div><span class="chart-legend"><i></i> Todo o histórico</span></div>
-              <div id="activityChart" class="activity-chart" aria-label="Gráfico de movimentações de todo o histórico"></div>
+              <div class="section-heading"><div><span class="eyebrow">ÚLTIMOS 7 DIAS</span><h2>Movimentações recentes</h2></div><button id="openGeneralHistory" class="text-button" type="button">Histórico geral →</button></div>
+              <div id="activityChart" class="activity-chart" aria-label="Gráfico de movimentações dos últimos sete dias"></div>
             </article>
             <article class="surface status-overview">
               <div class="section-heading"><div><span class="eyebrow">PROCESSOS</span><h2>Distribuição por status</h2></div></div>
               <div id="statusOverview" class="status-overview-list"></div>
             </article>
+          </section>
+          <section id="history" class="surface history-surface hidden">
+            <div class="section-heading"><div><span class="eyebrow">AUDITORIA OPERACIONAL</span><h2>Histórico geral</h2><p id="historyResults" class="muted">Todos os registros e alterações realizados no sistema.</p></div><div class="history-actions"><button id="closeGeneralHistory" class="text-button" type="button">Fechar histórico ×</button></div></div>
+            <div class="history-filters"><input id="historySearch" type="search" placeholder="Buscar TAG, equipamento, usuário ou OS"><select id="historyStatus"><option value="">Todos os status</option></select><input id="historyDate" type="date" aria-label="Filtrar por data"><button id="clearHistoryFilters" class="button button-secondary" type="button">Limpar</button></div>
+            <div class="history-table-wrap"><table class="history-table"><thead><tr><th>Equipamento</th><th>Alteração</th><th>Responsável</th><th>OS</th><th>Destino</th><th>Data e hora</th></tr></thead><tbody id="generalHistoryList"><tr><td colspan="6">Carregando histórico…</td></tr></tbody></table></div>
           </section>
           <section class="surface">
             <div class="section-heading"><div><span class="eyebrow">ACOMPANHAMENTO</span><h2>Movimentações recentes</h2></div><button class="text-button" data-go="tracking">Ver todos →</button></div>
@@ -116,13 +120,6 @@
             <div class="section-heading"><div><span class="eyebrow">RASTREABILIDADE</span><h2>Acompanhamentos</h2><p class="muted" id="resultsLabel">Consulte todos os ciclos da operação.</p></div><div class="filters"><label class="search-box"><span class="sr-only">Buscar acompanhamentos</span><input id="searchInput" type="search" placeholder="Buscar TAG, equipamento ou OS"></label><select id="statusFilter" aria-label="Filtrar por status"><option value="">Todos os status</option></select><button id="clearFilters" class="button button-secondary filter-clear" type="button">Limpar</button></div></div>
             <div class="record-head"><span>Equipamento</span><span>Destino / OS</span><span>Status</span><span>Próxima ação</span><span>Prioridade</span><span>Ação</span></div>
             <div id="trackingList" class="records"></div>
-          </section>
-        </section>
-
-        <section id="history" class="view-section hidden">
-          <section class="surface history-surface">
-            <div class="section-heading"><div><span class="eyebrow">AUDITORIA OPERACIONAL</span><h2>Histórico geral</h2><p id="historyResults" class="muted">Todos os registros e alterações realizados no sistema.</p></div><div class="history-filters"><input id="historySearch" type="search" placeholder="Buscar TAG, equipamento, usuário ou OS"><select id="historyStatus"><option value="">Todos os status</option></select><input id="historyDate" type="date" aria-label="Filtrar por data"><button id="clearHistoryFilters" class="button button-secondary" type="button">Limpar</button></div></div>
-            <div class="history-table-wrap"><table class="history-table"><thead><tr><th>Equipamento</th><th>Alteração</th><th>Responsável</th><th>OS</th><th>Destino</th><th>Data e hora</th></tr></thead><tbody id="generalHistoryList"><tr><td colspan="6">Carregando histórico…</td></tr></tbody></table></div>
           </section>
         </section>
 

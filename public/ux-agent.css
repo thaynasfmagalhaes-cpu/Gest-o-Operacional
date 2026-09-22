@@ -103,3 +103,12 @@ body{background:linear-gradient(rgba(10,18,23,.62),rgba(16,25,31,.72)),url('offs
 .user-actions{grid-column:2/-1;padding-top:12px;border-top:1px solid rgba(255,255,255,.09)}
 @media(max-width:900px){.admin-layout{grid-template-columns:1fr}.admin-layout .tabs{position:static;grid-template-columns:repeat(2,minmax(180px,1fr))}.user-card{grid-template-columns:auto 1fr}.access-status,.role-control,.user-actions{grid-column:2}.user-actions{justify-content:flex-start}}
 @media(max-width:560px){.admin-layout .tabs{grid-template-columns:1fr}.role-control{width:100%}.user-actions{grid-column:1/-1}.user-actions .button{flex:1}}
+
+/* Painel administrativo claro */
+body{color:#173042;background:linear-gradient(rgba(239,245,247,.91),rgba(224,234,237,.95)),url('offshore-platform-realistic.png') center/cover fixed no-repeat}
+.intro,.panel,.metrics article{color:#173042;background:linear-gradient(145deg,rgba(252,253,254,.98),rgba(227,235,238,.96));border-color:rgba(105,143,156,.22);box-shadow:0 18px 48px rgba(14,42,55,.13),inset 0 1px #fff}
+.intro p,.panel-description,.metrics span{color:#607681}.metrics strong{color:#173042;text-shadow:none}
+.admin-layout .tabs{background:rgba(239,244,246,.97);border-color:rgba(105,143,156,.22)}.admin-layout .tab{color:#536b76}.admin-layout .tab:hover{color:#173042;background:rgba(0,169,183,.08)}.admin-layout .tab.active{color:#173042;background:linear-gradient(135deg,rgba(0,169,183,.18),rgba(255,255,255,.8));border-color:rgba(0,169,183,.25)}
+.reminder-form{background:rgba(218,229,233,.72);border-color:rgba(105,143,156,.2)}.reminder-card,.user-card,.suggestion,.standard{color:#173042;background:rgba(250,252,253,.93);border-color:rgba(105,143,156,.2)}
+.reminder-card p,.reminder-card small,.user-details span,.user-details small,.suggestion p,.role-control label{color:#607681}.suggestion strong{color:#173042}.user-actions{border-color:rgba(34,71,85,.12)}
+.button-secondary{background:#fff;color:#173042;border-color:rgba(105,143,156,.3)}
