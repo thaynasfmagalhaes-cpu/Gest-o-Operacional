@@ -6,7 +6,14 @@
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
-    "run_worker_first": ["/api/*", "/health"]
+    "run_worker_first": ["/api/*", "/health", "/setup"]
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "gestao-operacional-db",
+      "database_id": "7fba3ac1-ab0c-490d-91af-c61093581fed"
+    }
+  ],
   "observability": { "enabled": true }
 }
