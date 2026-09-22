@@ -4,34 +4,55 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Controle de equipamentos, acompanhamentos e movimentações operacionais.">
-  <title>Gestão Operacional</title>
+  <title>Ocyan | Gestão Operacional</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23092943'/%3E%3Cpath d='M18 20h28v8H26v16h20v-8H34' fill='none' stroke='%2300a7b5' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='20' cy='44' r='4' fill='%23b7d52a'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="app.css">
 </head>
 <body>
   <section id="loginView" class="login-view">
     <div class="login-brand">
-      <span class="brand-mark">GO</span>
+      <div class="ocyan-brand"><span class="brand-symbol">O</span><strong>ocyan</strong></div>
       <div><span class="eyebrow lime">CONTROLE INTEGRADO</span><h1>Gestão Operacional</h1></div>
       <p>Equipamentos, movimentações e histórico reunidos em um único fluxo.</p>
       <ul><li>Rastreabilidade por TAG</li><li>Status operacional atualizado</li><li>Histórico completo por ciclo</li></ul>
     </div>
     <div class="login-card">
+      <div class="login-card-brand"><span class="brand-symbol small">O</span><strong>Ocyan</strong></div>
+      <div class="auth-tabs" role="tablist" aria-label="Opções de acesso">
+        <button class="auth-tab active" type="button" role="tab" aria-selected="true" data-auth="login">Entrar</button>
+        <button class="auth-tab" type="button" role="tab" aria-selected="false" data-auth="register">Cadastrar</button>
+      </div>
+      <div id="loginPanel">
       <span class="eyebrow">ACESSO AO SISTEMA</span>
       <h2>Entrar</h2>
       <p class="muted">Use seu e-mail corporativo e sua senha.</p>
       <form id="loginForm">
         <label>E-mail<input type="email" name="email" autocomplete="username" required placeholder="nome@empresa.com"></label>
-        <label>Senha<input type="password" name="password" autocomplete="current-password" required placeholder="Sua senha"></label>
+        <label>Senha<span class="password-field"><input id="passwordInput" type="password" name="password" autocomplete="current-password" required placeholder="Sua senha"><button id="togglePassword" type="button" aria-label="Mostrar senha">Mostrar</button></span></label>
         <p id="loginError" class="form-error" role="alert"></p>
-        <button class="button button-primary full-button">Entrar no sistema</button>
+        <button id="loginButton" class="button button-primary full-button">Entrar no sistema</button>
       </form>
+      </div>
+      <div id="registerPanel" class="hidden">
+        <span class="eyebrow">NOVO ACESSO</span>
+        <h2>Criar cadastro</h2>
+        <p class="muted">Preencha seus dados. O acesso será liberado após aprovação.</p>
+        <form id="registerForm">
+          <label>Nome completo<input name="nome" autocomplete="name" required placeholder="Seu nome"></label>
+          <label>E-mail corporativo<input type="email" name="email" autocomplete="email" required placeholder="nome@empresa.com"></label>
+          <label>Setor<input name="setor" required placeholder="Ex.: Operações"></label>
+          <label>Senha<span class="password-field"><input type="password" name="password" autocomplete="new-password" minlength="8" required placeholder="Mínimo de 8 caracteres"><button class="register-password-toggle" type="button" aria-label="Mostrar senha">Mostrar</button></span></label>
+          <p id="registerMessage" class="form-success" role="status"></p>
+          <p id="registerError" class="form-error" role="alert"></p>
+          <button id="registerButton" class="button button-primary full-button">Enviar cadastro</button>
+        </form>
+      </div>
     </div>
   </section>
 
   <div id="appView" class="app-view hidden">
     <aside class="sidebar" id="sidebar">
-      <div class="logo"><span class="brand-mark small">GO</span><div><strong>Gestão</strong><span>Operacional</span></div></div>
+      <div class="logo"><span class="brand-symbol small">O</span><div><strong>Ocyan</strong><span>Gestão Operacional</span></div></div>
       <nav>
         <button class="nav-item active" data-view="dashboard"><span>▦</span>Painel geral</button>
         <button class="nav-item" data-view="tracking"><span>⇄</span>Acompanhamentos</button>
@@ -40,31 +61,39 @@
       </nav>
       <div class="sidebar-footer"><span id="userInitials" class="avatar">US</span><div><strong id="userName">Usuário</strong><span id="userRole">Operacional</span></div><button id="logout" title="Sair" aria-label="Sair">↪</button></div>
     </aside>
+    <button id="sidebarBackdrop" class="sidebar-backdrop" aria-label="Fechar menu"></button>
 
     <section class="workspace">
       <header class="workspace-header">
-        <button id="menuToggle" class="menu-toggle" aria-label="Abrir menu">☰</button>
-        <div><span class="eyebrow">GESTÃO OPERACIONAL</span><h1 id="pageTitle">Visão geral</h1></div>
+        <button id="menuToggle" class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+        <div class="header-title"><span class="eyebrow">GESTÃO OPERACIONAL OCYAN</span><h1 id="pageTitle">Visão geral</h1></div>
+        <div class="header-status"><span class="live-dot"></span>Sistema online</div>
         <button class="button button-primary desktop-action" data-go="new">Novo acompanhamento</button>
       </header>
 
       <main class="content">
         <section id="dashboard" class="view-section">
+          <section class="welcome-banner">
+            <div><span class="eyebrow lime">VISÃO OPERACIONAL</span><h2 id="welcomeTitle">Olá, vamos acompanhar a operação.</h2><p>Indicadores e movimentações importantes reunidos para decisões mais rápidas.</p></div>
+            <button class="button button-light" data-go="new">＋ Novo acompanhamento</button>
+          </section>
           <div class="summary-grid">
-            <article class="summary-card"><span>Em acompanhamento</span><strong id="totalActive">0</strong><small>Ciclos ativos</small></article>
-            <article class="summary-card attention"><span>Atenção necessária</span><strong id="totalAttention">0</strong><small>Prioridade alta ou crítica</small></article>
-            <article class="summary-card success"><span>Prontos para saída</span><strong id="totalReady">0</strong><small>Aguardando movimentação</small></article>
-            <article class="summary-card"><span>Finalizados</span><strong id="totalDone">0</strong><small>Histórico preservado</small></article>
+            <button class="summary-card" data-summary-filter="active"><span>Em acompanhamento</span><strong id="totalActive">0</strong><small>Ciclos ativos <b>→</b></small></button>
+            <button class="summary-card attention" data-summary-filter="attention"><span>Atenção necessária</span><strong id="totalAttention">0</strong><small>Prioridade alta ou crítica <b>→</b></small></button>
+            <button class="summary-card success" data-summary-filter="ready"><span>Prontos para saída</span><strong id="totalReady">0</strong><small>Aguardando movimentação <b>→</b></small></button>
+            <button class="summary-card completed" data-summary-filter="done"><span>Finalizados</span><strong id="totalDone">0</strong><small>Histórico preservado <b>→</b></small></button>
           </div>
           <section class="surface">
             <div class="section-heading"><div><span class="eyebrow">ACOMPANHAMENTO</span><h2>Movimentações recentes</h2></div><button class="text-button" data-go="tracking">Ver todos →</button></div>
-            <div id="recentList" class="records"></div>
+            <div class="record-head"><span>Equipamento</span><span>Destino / OS</span><span>Status</span><span>Próxima ação</span><span>Prioridade</span></div>
+            <div id="recentList" class="records"><div class="loading-state">Carregando movimentações…</div></div>
           </section>
         </section>
 
         <section id="tracking" class="view-section hidden">
           <section class="surface">
-            <div class="section-heading"><div><span class="eyebrow">RASTREABILIDADE</span><h2>Acompanhamentos</h2></div><div class="filters"><input id="searchInput" type="search" placeholder="Buscar TAG, equipamento ou OS"><select id="statusFilter"><option value="">Todos os status</option></select></div></div>
+            <div class="section-heading"><div><span class="eyebrow">RASTREABILIDADE</span><h2>Acompanhamentos</h2><p class="muted" id="resultsLabel">Consulte todos os ciclos da operação.</p></div><div class="filters"><label class="search-box"><span class="sr-only">Buscar acompanhamentos</span><input id="searchInput" type="search" placeholder="Buscar TAG, equipamento ou OS"></label><select id="statusFilter" aria-label="Filtrar por status"><option value="">Todos os status</option></select><button id="clearFilters" class="button button-secondary filter-clear" type="button">Limpar</button></div></div>
+            <div class="record-head"><span>Equipamento</span><span>Destino / OS</span><span>Status</span><span>Próxima ação</span><span>Prioridade</span></div>
             <div id="trackingList" class="records"></div>
           </section>
         </section>
@@ -73,14 +102,14 @@
           <section class="surface form-surface">
             <div class="section-heading"><div><span class="eyebrow">NOVO CICLO</span><h2>Novo acompanhamento</h2><p class="muted">Registre a TAG e o destino para iniciar o rastreamento.</p></div></div>
             <form id="cycleForm" class="form-grid">
-              <label>TAG do equipamento<input name="tag" required placeholder="Ex.: MDS-0308"></label>
-              <label>Equipamento<input name="equipamento" required placeholder="Ex.: Máquina de solda"></label>
-              <label>Destino<select name="destino_id" id="destinationSelect" required><option value="">Selecione o destino</option></select></label>
+              <label>TAG do equipamento <em>*</em><input name="tag" required placeholder="Ex.: MDS-0308"><small>Identificação única fixada no equipamento.</small></label>
+              <label>Equipamento <em>*</em><input name="equipamento" required placeholder="Ex.: Máquina de solda"></label>
+              <label>Destino <em>*</em><select name="destino_id" id="destinationSelect" required><option value="">Selecione o destino</option></select></label>
               <label>OS<input name="os" placeholder="Número da ordem de serviço"></label>
               <label>Tipo de propriedade<select name="tipo_propriedade"><option>Próprio</option><option>Alugado</option></select></label>
               <label>Prioridade<select name="prioridade"><option>Normal</option><option>Alta</option><option>Crítica</option></select></label>
               <label class="full">Próxima ação<input name="proxima_acao" placeholder="Ex.: Acompanhar autorização da manutenção"></label>
-              <div class="full form-actions"><button type="reset" class="button button-secondary">Limpar</button><button class="button button-primary">Criar acompanhamento</button></div>
+              <div class="full form-actions"><button type="reset" class="button button-secondary">Limpar</button><button id="cycleSubmit" class="button button-primary">Criar acompanhamento</button></div>
             </form>
           </section>
         </section>
