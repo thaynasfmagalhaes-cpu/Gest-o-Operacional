@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Agente UI/UX | Gestão Operacional</title>
+  <title>Configurações | Gestão Operacional</title>
   <link rel="stylesheet" href="ux-agent.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <img class="topbar-logo" src="ocyan-logo-white.svg" alt="Ocyan">
     <div>
       <span class="eyebrow">GESTÃO OPERACIONAL</span>
-      <h1>Agente de Design UI/UX</h1>
+      <h1>Configurações</h1>
     </div>
     <div class="header-actions"><a href="/" class="button button-ghost">← Voltar ao painel</a><button id="refresh" class="button button-secondary">Atualizar dados</button></div>
   </header>
@@ -19,10 +19,10 @@
   <main>
     <section class="intro">
       <div>
-        <span class="status-dot"></span><strong>Consultor de experiência ativo</strong>
-        <p>Analisa clareza, consistência e acessibilidade. Toda mudança depende de aprovação administrativa.</p>
+        <span class="status-dot"></span><strong>Administração do sistema</strong>
+        <p>Aprove novos usuários e acompanhe as configurações e melhorias da plataforma.</p>
       </div>
-      <button class="button button-primary" data-open="analysis">Analisar uma tela</button>
+      <button class="button button-primary" data-open="analysis">Sugerir melhoria</button>
     </section>
 
     <section class="metrics" aria-label="Resumo do agente">
@@ -32,13 +32,22 @@
       <article class="metric-success"><span>Implementadas</span><strong id="metricDone">—</strong></article>
     </section>
 
-    <nav class="tabs" aria-label="Seções do agente">
-      <button class="tab active" data-tab="suggestions">Sugestões</button>
+    <nav class="tabs" aria-label="Seções de configurações">
+      <button class="tab active" data-tab="users">Aprovação de cadastros <span id="pendingBadge" class="tab-badge">0</span></button>
+      <button class="tab" data-tab="suggestions">Melhorias visuais</button>
       <button class="tab" data-tab="feedback">Informar dificuldade</button>
       <button class="tab" data-tab="standards">Padrão visual</button>
     </nav>
 
-    <section id="suggestions" class="panel tab-panel">
+    <section id="users" class="panel tab-panel">
+      <div class="section-heading">
+        <div><span class="eyebrow">CONTROLE DE ACESSO</span><h2>Cadastros de usuários</h2><p class="panel-description">Os novos cadastros aparecem aqui aguardando sua aprovação.</p></div>
+        <button id="refreshUsers" class="button button-secondary" type="button">Atualizar lista</button>
+      </div>
+      <div id="userList" class="user-list"><p class="empty">Carregando cadastros…</p></div>
+    </section>
+
+    <section id="suggestions" class="panel tab-panel hidden">
       <div class="section-heading">
         <div><span class="eyebrow">AUDITORIA</span><h2>Recomendações priorizadas</h2></div>
         <select id="statusFilter" aria-label="Filtrar por status"><option value="">Todos os status</option><option>Pendente</option><option>Aprovada</option><option>Ajuste solicitado</option><option>Implementada</option><option>Rejeitada</option></select>

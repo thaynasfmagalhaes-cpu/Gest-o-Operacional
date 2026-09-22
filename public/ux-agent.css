@@ -53,6 +53,7 @@ label{display:grid;gap:7px;font-size:13px;font-weight:700}
 .standard small{color:var(--cyan-dark);font-weight:800;text-transform:uppercase}
 .standard p{margin-top:7px;line-height:1.45}
 .empty{text-align:center;color:var(--muted);padding:30px}
+.panel-description{color:var(--muted);margin-top:7px}.tab-badge{display:inline-grid;place-items:center;min-width:22px;height:22px;margin-left:5px;padding:0 6px;border-radius:999px;background:var(--danger);color:#fff;font-size:11px}.user-list{display:grid;gap:12px}.user-card{display:grid;grid-template-columns:auto 1fr auto auto;gap:14px;align-items:center;padding:16px;border:1px solid var(--line);border-radius:13px;background:rgba(249,252,253,.9)}.user-card.pending-user{border-left:4px solid var(--warning)}.user-avatar{width:43px;height:43px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,var(--navy-2),var(--cyan));color:#fff;font-weight:800}.user-details{display:grid;gap:3px}.user-details span,.user-details small{color:var(--muted)}.user-details span{font-size:13px}.user-details small{font-size:11px}.access-status{padding:6px 9px;border-radius:999px;font-size:11px;font-weight:800}.access-status.approved{background:#e8f6ee;color:var(--success)}.access-status.pending{background:#fff4d8;color:#8c6500}.user-actions{display:flex;justify-content:flex-end}
 dialog{width:min(760px,calc(100% - 30px));border:0;border-radius:14px;padding:24px;box-shadow:0 25px 70px rgba(9,41,67,.25)}
 dialog::backdrop{background:rgba(9,41,67,.58)}
 .dialog-heading{display:flex;align-items:start;justify-content:space-between;margin-bottom:22px}
@@ -74,9 +75,9 @@ dialog::backdrop{background:rgba(9,41,67,.58)}
 }
 
 /* Identidade Ocyan aplicada ao módulo de experiência */
-body{min-height:100vh;background:linear-gradient(rgba(237,245,247,.93),rgba(237,245,247,.96)),url('offshore-platform-realistic.png') center/cover fixed no-repeat}
+body{min-height:100vh;background:linear-gradient(rgba(3,33,53,.36),rgba(3,33,53,.48)),url('offshore-platform-realistic.png') center/cover fixed no-repeat}
 .topbar{position:relative;min-height:138px;padding-left:clamp(24px,5vw,72px);background:linear-gradient(90deg,rgba(3,31,50,.97),rgba(3,47,70,.78)),url('offshore-platform-realistic.png') center 52%/cover no-repeat;border-bottom:3px solid var(--lime);box-shadow:0 14px 36px rgba(3,31,50,.2)}
 .topbar-logo{width:155px;margin-right:24px}.topbar>div:first-of-type{margin-right:auto}.topbar h1{letter-spacing:-.03em}
 .intro,.panel,.metrics article{background:rgba(255,255,255,.94);backdrop-filter:blur(18px);border-radius:16px;box-shadow:0 15px 40px rgba(3,40,60,.1)}
 .metrics article{border-top-width:4px}.panel{border-radius:18px}.suggestion,.standard{background:rgba(249,252,253,.82);border-radius:12px}
-@media(max-width:760px){.topbar-logo{width:132px}.topbar{gap:16px}.topbar>div:first-of-type{margin-right:0}}
+@media(max-width:760px){.topbar-logo{width:132px}.topbar{gap:16px}.topbar>div:first-of-type{margin-right:0}.user-card{grid-template-columns:auto 1fr}.access-status,.user-actions{grid-column:2}.user-actions{justify-content:flex-start}}
