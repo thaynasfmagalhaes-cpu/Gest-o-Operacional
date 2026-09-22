@@ -69,6 +69,7 @@
         <button id="menuToggle" class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
         <img class="header-logo" src="ocyan-logo.svg" alt="Ocyan"><div class="header-title"><span class="eyebrow">GESTÃO OPERACIONAL</span><h1 id="pageTitle">Visão geral</h1></div>
         <div class="header-status"><span class="live-dot"></span>Sistema online</div>
+        <div class="notification-center"><button id="notificationButton" class="notification-button" type="button" aria-label="Abrir notificações" aria-expanded="false">🔔<span id="notificationBadge" class="notification-badge hidden">0</span></button><section id="notificationPanel" class="notification-panel hidden"><div class="notification-head"><div><span class="eyebrow">CENTRAL DE ALERTAS</span><h2>Notificações</h2></div><button id="closeNotifications" type="button" aria-label="Fechar">×</button></div><div id="notificationList" class="notification-list"><p>Carregando alertas…</p></div></section></div>
       </header>
 
       <main class="content">
@@ -79,7 +80,7 @@
           <div class="summary-grid">
             <button class="summary-card" data-summary-filter="active"><span>Em acompanhamento</span><strong id="totalActive">0</strong><small>Ciclos ativos <b>→</b></small></button>
             <button class="summary-card attention" data-summary-filter="attention"><span>Atenção necessária</span><strong id="totalAttention">0</strong><small>Prioridade alta ou crítica <b>→</b></small></button>
-            <button class="summary-card success" data-summary-filter="ready"><span>Prontos para saída</span><strong id="totalReady">0</strong><small>Aguardando movimentação <b>→</b></small></button>
+            <button class="summary-card success" data-summary-filter="ready"><span>Itens liberados</span><strong id="totalReady">0</strong><small>Prontos para finalização <b>→</b></small></button>
             <button class="summary-card completed" data-summary-filter="done"><span>Finalizados</span><strong id="totalDone">0</strong><small>Histórico preservado <b>→</b></small></button>
           </div>
           <section class="insights-grid">
