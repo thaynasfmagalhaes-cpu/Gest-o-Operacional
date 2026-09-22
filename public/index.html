@@ -83,9 +83,19 @@
             <button class="summary-card success" data-summary-filter="ready"><span>Prontos para saída</span><strong id="totalReady">0</strong><small>Aguardando movimentação <b>→</b></small></button>
             <button class="summary-card completed" data-summary-filter="done"><span>Finalizados</span><strong id="totalDone">0</strong><small>Histórico preservado <b>→</b></small></button>
           </div>
+          <section class="insights-grid">
+            <article class="surface chart-surface">
+              <div class="section-heading"><div><span class="eyebrow">DESEMPENHO</span><h2>Movimentações dos últimos 7 dias</h2></div><span class="chart-legend"><i></i> Registros</span></div>
+              <div id="activityChart" class="activity-chart" aria-label="Gráfico de movimentações dos últimos sete dias"></div>
+            </article>
+            <article class="surface status-overview">
+              <div class="section-heading"><div><span class="eyebrow">PROCESSOS</span><h2>Distribuição por status</h2></div></div>
+              <div id="statusOverview" class="status-overview-list"></div>
+            </article>
+          </section>
           <section class="surface">
             <div class="section-heading"><div><span class="eyebrow">ACOMPANHAMENTO</span><h2>Movimentações recentes</h2></div><button class="text-button" data-go="tracking">Ver todos →</button></div>
-            <div class="record-head"><span>Equipamento</span><span>Destino / OS</span><span>Status</span><span>Próxima ação</span><span>Prioridade</span></div>
+            <div class="record-head"><span>Equipamento</span><span>Destino / OS</span><span>Status</span><span>Próxima ação</span><span>Prioridade</span><span>Ação</span></div>
             <div id="recentList" class="records"><div class="loading-state">Carregando movimentações…</div></div>
           </section>
         </section>
@@ -93,7 +103,7 @@
         <section id="tracking" class="view-section hidden">
           <section class="surface">
             <div class="section-heading"><div><span class="eyebrow">RASTREABILIDADE</span><h2>Acompanhamentos</h2><p class="muted" id="resultsLabel">Consulte todos os ciclos da operação.</p></div><div class="filters"><label class="search-box"><span class="sr-only">Buscar acompanhamentos</span><input id="searchInput" type="search" placeholder="Buscar TAG, equipamento ou OS"></label><select id="statusFilter" aria-label="Filtrar por status"><option value="">Todos os status</option></select><button id="clearFilters" class="button button-secondary filter-clear" type="button">Limpar</button></div></div>
-            <div class="record-head"><span>Equipamento</span><span>Destino / OS</span><span>Status</span><span>Próxima ação</span><span>Prioridade</span></div>
+            <div class="record-head"><span>Equipamento</span><span>Destino / OS</span><span>Status</span><span>Próxima ação</span><span>Prioridade</span><span>Ação</span></div>
             <div id="trackingList" class="records"></div>
           </section>
         </section>
@@ -114,6 +124,21 @@
           </section>
         </section>
       </main>
+    </section>
+  </div>
+  <div id="updateModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="updateTitle">
+    <button class="modal-backdrop" type="button" data-close-modal aria-label="Fechar janela"></button>
+    <section class="modal-card">
+      <div class="modal-header"><div><span class="eyebrow">ATUALIZAR PROCESSO</span><h2 id="updateTitle">Acompanhamento</h2><p id="updateSubtitle" class="muted"></p></div><button class="modal-close" type="button" data-close-modal aria-label="Fechar">×</button></div>
+      <form id="updateForm" class="form-grid">
+        <input type="hidden" name="id">
+        <label>Status <em>*</em><select name="status" id="updateStatus" required></select></label>
+        <label>Processo <em>*</em><select name="processo" id="updateProcess" required><option>Fluxo normal</option><option>Manutenção elétrica</option><option>Manutenção mecânica</option><option>Certificação</option><option>Recertificação</option><option>Reparo externo</option><option>Devolução</option><option>Backload</option><option>Descarte</option></select></label>
+        <label class="full">Próxima ação<input name="proxima_acao" placeholder="Informe o próximo passo"></label>
+        <label class="full">Observação<textarea name="observacao" rows="3" placeholder="Registre informações importantes desta atualização"></textarea></label>
+        <div class="full modal-history"><strong>Histórico recente</strong><div id="historyList" class="history-list"><span>Carregando…</span></div></div>
+        <div class="full form-actions"><button type="button" class="button button-secondary" data-close-modal>Cancelar</button><button id="updateSubmit" class="button button-primary">Salvar atualização</button></div>
+      </form>
     </section>
   </div>
   <div id="toast" role="status" aria-live="polite"></div>
