@@ -11,7 +11,7 @@
     <img class="topbar-logo" src="ocyan-logo-white.svg" alt="Ocyan">
     <div>
       <span class="eyebrow">GESTÃO OPERACIONAL</span>
-      <h1>Configurações</h1>
+      <h1>Painel administrativo</h1>
     </div>
     <div class="header-actions"><a href="/" class="button button-ghost">← Voltar ao painel</a><button id="refresh" class="button button-secondary">Atualizar dados</button></div>
   </header>
@@ -33,13 +33,28 @@
     </section>
 
     <nav class="tabs" aria-label="Seções de configurações">
-      <button class="tab active" data-tab="users">Aprovação de cadastros <span id="pendingBadge" class="tab-badge">0</span></button>
+      <button class="tab active" data-tab="reminders">Notificações <span id="reminderBadge" class="tab-badge">0</span></button>
+      <button class="tab" data-tab="users">Aprovação de cadastros <span id="pendingBadge" class="tab-badge">0</span></button>
       <button class="tab" data-tab="suggestions">Melhorias visuais</button>
       <button class="tab" data-tab="feedback">Informar dificuldade</button>
       <button class="tab" data-tab="standards">Padrão visual</button>
     </nav>
 
-    <section id="users" class="panel tab-panel">
+    <section id="reminders" class="panel tab-panel">
+      <div class="section-heading">
+        <div><span class="eyebrow">LEMBRETES ADMINISTRATIVOS</span><h2>Notificações e pendências</h2><p class="panel-description">Registre itens que precisam ser lembrados e acompanhe seus prazos.</p></div>
+      </div>
+      <form id="reminderForm" class="reminder-form">
+        <label>Título<input name="titulo" required placeholder="Ex.: Verificar certificação próxima do vencimento"></label>
+        <label>Data do lembrete<input name="data_lembrete" type="date"></label>
+        <label>Prioridade<select name="prioridade"><option>Normal</option><option>Alta</option><option>Crítica</option></select></label>
+        <label class="reminder-description">Descrição<input name="descricao" placeholder="Detalhes, TAG, OS ou responsável"></label>
+        <button id="reminderSubmit" class="button button-primary" type="submit">Criar notificação</button>
+      </form>
+      <div id="reminderList" class="reminder-list"><p class="empty">Carregando notificações…</p></div>
+    </section>
+
+    <section id="users" class="panel tab-panel hidden">
       <div class="section-heading">
         <div><span class="eyebrow">CONTROLE DE ACESSO</span><h2>Cadastros de usuários</h2><p class="panel-description">Os novos cadastros aparecem aqui aguardando sua aprovação.</p></div>
         <button id="refreshUsers" class="button button-secondary" type="button">Atualizar lista</button>

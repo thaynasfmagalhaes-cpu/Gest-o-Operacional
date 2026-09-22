@@ -57,9 +57,10 @@
         <button class="nav-item active" data-view="dashboard"><span>▦</span>Painel geral</button>
         <button class="nav-item" data-view="tracking"><span>⇄</span>Acompanhamentos</button>
         <button class="nav-item" data-view="new"><span>＋</span>Novo acompanhamento</button>
-        <a class="nav-item" href="/ux-agent.html"><span>⚙</span>Configurações</a>
+        <button id="profileNav" class="nav-item" type="button"><span>◉</span>Meu perfil</button>
+        <a id="adminSettingsLink" class="nav-item" href="/ux-agent.html"><span>⚙</span>Painel administrativo <b id="adminAlertBadge" class="nav-badge hidden">0</b></a>
       </nav>
-      <div class="sidebar-footer"><span id="userInitials" class="avatar">US</span><div><strong id="userName">Usuário</strong><span id="userRole">Operacional</span></div><button id="logout" title="Sair" aria-label="Sair">↪</button></div>
+      <div class="sidebar-footer"><button id="openProfile" class="sidebar-profile" type="button" title="Editar meu perfil"><span class="avatar-wrap"><span id="userInitials" class="avatar">US</span><img id="userPhoto" class="user-photo hidden" alt="Foto do usuário"></span><span class="sidebar-user"><strong id="userName">Usuário</strong><small id="userRole">Operacional</small></span></button><button id="logout" title="Sair" aria-label="Sair">↪</button></div>
     </aside>
     <button id="sidebarBackdrop" class="sidebar-backdrop" aria-label="Fechar menu"></button>
 
@@ -136,6 +137,21 @@
         <label class="full">Observação<textarea name="observacao" rows="3" placeholder="Registre informações importantes desta atualização"></textarea></label>
         <div class="full modal-history"><strong>Histórico recente</strong><div id="historyList" class="history-list"><span>Carregando…</span></div></div>
         <div class="full form-actions"><button type="button" class="button button-secondary" data-close-modal>Cancelar</button><button id="updateSubmit" class="button button-primary">Salvar atualização</button></div>
+      </form>
+    </section>
+  </div>
+  <div id="profileModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+    <button class="modal-backdrop" type="button" data-close-profile aria-label="Fechar janela"></button>
+    <section class="modal-card profile-card">
+      <div class="modal-header"><div><span class="eyebrow">CONTA PESSOAL</span><h2 id="profileTitle">Editar meu perfil</h2><p class="muted">Personalize as informações exibidas no sistema.</p></div><button class="modal-close" type="button" data-close-profile aria-label="Fechar">×</button></div>
+      <form id="profileForm" class="form-grid">
+        <div class="full photo-editor"><span class="profile-preview-wrap"><span id="profileInitials" class="profile-preview-initials">US</span><img id="profilePreview" class="profile-preview hidden" alt="Prévia da foto"></span><div><label class="photo-button">Escolher foto<input id="profilePhotoInput" type="file" accept="image/png,image/jpeg,image/webp"></label><button id="removePhoto" class="text-button" type="button">Remover foto</button><small>JPG, PNG ou WEBP. A imagem será ajustada automaticamente.</small></div></div>
+        <label>Nome completo <em>*</em><input name="nome" required></label>
+        <label>E-mail<input name="email" type="email" disabled></label>
+        <label>Função<input name="funcao" placeholder="Ex.: Responsável Operacional do Patrimônio"></label>
+        <label>Matrícula<input name="matricula" placeholder="Informe sua matrícula"></label>
+        <label class="full">Setor<input name="setor" disabled></label>
+        <div class="full form-actions"><button type="button" class="button button-secondary" data-close-profile>Cancelar</button><button id="profileSubmit" class="button button-primary">Salvar perfil</button></div>
       </form>
     </section>
   </div>
