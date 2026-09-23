@@ -8,10 +8,10 @@
 </head>
 <body>
   <header class="topbar">
+    <button id="adminMenuToggle" class="admin-menu-toggle" type="button" aria-label="Abrir menu" aria-controls="adminTabs" aria-expanded="false">☰</button>
     <img class="topbar-logo" src="equipa-logo-clean.webp" alt="Equipa">
     <div>
-      <span class="eyebrow">EQUIPA</span>
-      <h1 id="settingsTitle">Configurações</h1>
+      <h1 id="settingsTitle">Painel de Controle</h1>
     </div>
     <div class="header-actions"><a href="/" class="button button-ghost">← Voltar ao painel</a><button id="refresh" class="button button-secondary">Atualizar dados</button></div>
   </header>
@@ -19,8 +19,8 @@
   <main>
     <section class="intro">
       <div>
-        <span class="status-dot"></span><strong>Evolução e configurações</strong>
-        <p>Envie melhorias para análise e acompanhe a evolução da plataforma Equipa.</p>
+        <span class="status-dot"></span><strong>Central administrativa</strong>
+        <p>Acompanhe a operação, resolva pendências e gerencie acessos em um só lugar.</p>
       </div>
       <button class="button button-primary" data-open="analysis">Sugerir melhoria</button>
     </section>
@@ -30,10 +30,16 @@
       <article><span>Cadastros pendentes</span><strong id="metricRegistrations">—</strong></article>
       <article class="metric-critical"><span>Alertas operacionais</span><strong id="metricAlerts">—</strong></article>
       <article class="metric-success"><span>Lembretes ativos</span><strong id="metricReminders">—</strong></article>
+      <article><span>Ciclos em aberto</span><strong id="metricActiveCycles">—</strong></article>
+      <article><span>Liberados para revisão</span><strong id="metricReleased">—</strong></article>
+      <article><span>Sem atualização há 3 dias</span><strong id="metricStale">—</strong></article>
+      <article><span>Conferências pendentes</span><strong id="metricEvidence">—</strong></article>
     </section>
 
-    <div class="admin-layout"><nav class="tabs" aria-label="Seções de configurações">
-      <button class="tab active admin-only" data-tab="reminders">Notificações <span id="reminderBadge" class="tab-badge">0</span></button>
+    <div class="admin-layout"><button id="adminMenuBackdrop" class="admin-menu-backdrop" type="button" aria-label="Fechar menu"></button><nav id="adminTabs" class="tabs" aria-label="Seções de configurações">
+      <a class="tab admin-home-link" href="/">← Painel Geral</a>
+      <button class="tab active admin-only" data-tab="overview">Visão operacional</button>
+      <button class="tab admin-only" data-tab="reminders">Notificações <span id="reminderBadge" class="tab-badge">0</span></button>
       <button class="tab admin-only" data-tab="users">Aprovação de cadastros <span id="pendingBadge" class="tab-badge">0</span></button>
       <button class="tab admin-only" data-tab="catalogs">Plataformas e equipamentos</button>
       <button class="tab" data-tab="suggestions">Evolução do Sistema</button>
@@ -41,7 +47,13 @@
       <button class="tab" data-tab="standards">Padrão visual</button>
     </nav><div class="admin-content">
 
-    <section id="reminders" class="panel tab-panel">
+    <section id="overview" class="panel tab-panel admin-only">
+      <div class="section-heading"><div><span class="eyebrow">CENTRO DE DECISÃO</span><h2>Visão operacional</h2><p class="panel-description">Pendências, gargalos e alterações recentes com dados do Equipa.</p></div><span id="overviewUpdated" class="overview-updated"></span></div>
+      <div class="overview-grid"><article class="overview-box"><div class="overview-box-head"><h3>Ações prioritárias</h3><button class="text-link" data-jump="users" type="button">Gerenciar acessos →</button></div><div id="adminPriorities"></div></article><article class="overview-box"><div class="overview-box-head"><h3>Gargalos por etapa</h3><span>Status de ciclos abertos</span></div><div id="adminBottlenecks"></div></article></div>
+      <article class="overview-box audit-box"><div class="overview-box-head"><div><h3>Últimas movimentações</h3><small>Quem alterou, qual TAG e quando</small></div><button id="exportAdminHistory" class="button button-secondary" type="button">Exportar histórico</button></div><div class="audit-filters"><input id="adminHistorySearch" type="search" aria-label="Buscar TAG no histórico" placeholder="Buscar TAG, usuário ou status"><select id="adminHistoryStatus" aria-label="Filtrar status"><option value="">Todos os status</option></select></div><div id="adminHistoryList" class="audit-list"></div></article>
+    </section>
+
+    <section id="reminders" class="panel tab-panel hidden">
       <div class="section-heading">
         <div><span class="eyebrow">LEMBRETES ADMINISTRATIVOS</span><h2>Notificações e pendências</h2><p class="panel-description">Registre itens que precisam ser lembrados e acompanhe seus prazos.</p></div>
       </div>
@@ -58,7 +70,7 @@
     <section id="users" class="panel tab-panel hidden">
       <div class="section-heading">
         <div><span class="eyebrow">CONTROLE DE ACESSO</span><h2>Cadastros de usuários</h2><p class="panel-description">Os novos cadastros aparecem aqui aguardando sua aprovação.</p></div>
-        <button id="refreshUsers" class="button button-secondary" type="button">Atualizar lista</button>
+        <div class="user-toolbar"><input id="userSearch" type="search" aria-label="Buscar cadastro" placeholder="Buscar nome, e-mail ou matrícula"><button id="refreshUsers" class="button button-secondary" type="button">Atualizar lista</button></div>
       </div>
       <div class="recovery-requests"><h3>Solicitações de redefinição</h3><div id="recoveryRequests"></div><p id="resetResult" class="reset-result hidden" role="status"></p></div><div id="userList" class="user-list"><p class="empty">Carregando cadastros…</p></div>
     </section>
