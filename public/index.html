@@ -12,9 +12,6 @@
   <section id="loginView" class="login-view">
     <div class="login-brand">
       <div class="ocyan-brand"><img src="equipa-logo-clean.webp" alt="Equipa Gestão de Equipamentos"></div>
-      <div><span class="eyebrow lime">CONTROLE INTEGRADO</span><h1>Equipa</h1><p class="brand-subtitle">Gestão de Equipamentos</p></div>
-      <p>Equipamentos, movimentações e histórico reunidos em um único fluxo.</p>
-      <ul><li>Rastreabilidade por TAG</li><li>Status operacional atualizado</li><li>Histórico completo por ciclo</li></ul>
     </div>
     <div class="login-card">
       <div class="login-card-brand"><img src="equipa-logo-clean.webp" alt="Equipa"></div>
@@ -53,7 +50,7 @@
     <aside class="sidebar" id="sidebar">
       <div class="logo"><img src="equipa-logo-clean.webp" alt="Equipa"><span>Gestão de Equipamentos</span></div>
       <nav>
-        <button class="nav-item active" data-view="dashboard"><span>▦</span>Painel geral</button>
+        <button class="nav-item active" data-view="dashboard"><span>▦</span>Painel Geral</button>
         <button class="nav-item" data-view="new"><span>＋</span>Novo acompanhamento</button>
         <button class="nav-item" data-view="tracking"><span>⇄</span>Acompanhamentos</button>
         <button id="profileNav" class="nav-item" type="button"><span>◉</span>Meu perfil</button>
@@ -73,7 +70,7 @@
       <main class="content">
         <section id="dashboard" class="view-section">
           <section class="welcome-banner">
-            <div><span class="eyebrow lime">CENTRO DE CONTROLE OFFSHORE</span><h2 id="welcomeTitle">Olá, vamos acompanhar a operação.</h2><p>Visibilidade em tempo real para decisões seguras, ágeis e conectadas ao mar.</p></div>
+            <div><span class="eyebrow lime">CENTRO DE CONTROLE OFFSHORE E ONSHORE</span><h2 id="welcomeTitle">Olá, vamos acompanhar a operação.</h2><p>Visibilidade em tempo real para decisões seguras, ágeis e conectadas.</p></div>
           </section>
           <section class="guardian-command">
             <div class="guardian-heading"><div><span class="guardian-orb">✦</span><div><h2>Central de Comando</h2><p>Análise automática de riscos, gargalos e próximas ações.</p></div></div><span id="guardianUpdated" class="guardian-updated">Analisando operação…</span></div>
@@ -132,7 +129,7 @@
               <label>Tipo de propriedade<select name="tipo_propriedade"><option>Próprio</option><option>Alugado</option></select></label>
               <label>Prioridade<select name="prioridade"><option>Normal</option><option>Alta</option><option>Crítica</option></select></label>
               <label class="full">Próxima ação<input name="proxima_acao" placeholder="Ex.: Acompanhar autorização da manutenção"></label>
-              <div class="full form-actions"><button type="reset" class="button button-secondary">Limpar</button><button id="cycleSubmit" class="button button-primary">Criar acompanhamento</button></div>
+              <div class="full form-actions"><button id="clearCycleForm" type="button" class="button button-secondary">Limpar campos</button><button id="cycleSubmit" class="button button-primary">Criar acompanhamento</button></div>
             </form>
           </section>
         </section>

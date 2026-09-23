@@ -12,8 +12,10 @@ async function jwtSecret(env){if(env.JWT_SECRET)return env.JWT_SECRET;const row=
 async function auth(request,env){try{return await tokenVerify((request.headers.get('authorization')||'').replace('Bearer ',''),await jwtSecret(env))}catch{return null}}
 const canAdmin=user=>['Administrador','Criador'].includes(user?.perfil);
 const canCreate=user=>user?.perfil==='Criador';
+let schemaPromise;
+async function ensureSchema(env){return schemaPromise||(schemaPromise=initializeSchema(env).catch(error=>{schemaPromise=null;throw error}))}
 
-async function ensureSchema(env){if(!env.DB)throw new Error('Banco D1 não configurado');await env.DB.exec(`
+async function initializeSchema(env){if(!env.DB)throw new Error('Banco D1 não configurado');await env.DB.exec(`
 CREATE TABLE IF NOT EXISTS usuarios(id INTEGER PRIMARY KEY AUTOINCREMENT,nome TEXT NOT NULL,email TEXT NOT NULL UNIQUE,senha_hash TEXT NOT NULL,setor TEXT,perfil TEXT NOT NULL,ativo INTEGER NOT NULL DEFAULT 1);
 CREATE TABLE IF NOT EXISTS lembretes(id INTEGER PRIMARY KEY AUTOINCREMENT,titulo TEXT NOT NULL,descricao TEXT,data_lembrete TEXT,prioridade TEXT NOT NULL DEFAULT 'Normal',concluido INTEGER NOT NULL DEFAULT 0,criado_por INTEGER,criado_em TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);
 CREATE TABLE IF NOT EXISTS configuracoes(chave TEXT PRIMARY KEY,valor TEXT NOT NULL);

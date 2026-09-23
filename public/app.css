@@ -145,3 +145,5 @@ body{background:#05243a url('offshore-platform-realistic.webp') center/cover fix
 .button-primary,.record-action{background:linear-gradient(135deg,#039fb4,#9aba56)}.button-primary:hover,.record-action:hover{background:linear-gradient(135deg,#08b0c3,#aacd64)}
 .nav-item.active{box-shadow:inset 3px 0 #a8c95a}.user-photo{border-color:rgba(168,201,90,.82)}
 @media(max-width:760px){.login-view{grid-template-columns:1fr;padding:0}.login-brand{min-height:290px;padding:28px 25px}.login-card{border-radius:22px;margin:0 16px 24px;width:auto}.content{padding-top:66px}}
+.login-brand:before{content:"OFFSHORE  •  ONSHORE  •  OPERAÇÃO  •  EXCELÊNCIA"}
+#toast.success-toast{background:#287a58;border:1px solid rgba(181,232,207,.65);box-shadow:0 15px 40px rgba(15,76,51,.32)}
