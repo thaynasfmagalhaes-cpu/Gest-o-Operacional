@@ -68,7 +68,7 @@
       <header class="workspace-header minimal-header">
         <button id="menuToggle" class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false"><span aria-hidden="true">☰</span></button>
         <img class="floating-logo" src="equipa-logo-mark.webp" alt="Equipa">
-        <div class="notification-center"><button id="notificationButton" class="notification-button" type="button" aria-label="Abrir notificações" aria-expanded="false"><img src="icone-plataforma-alerta.png" alt=""><span id="notificationBadge" class="notification-badge hidden">0</span></button><section id="notificationPanel" class="notification-panel hidden"><div class="notification-head"><div><span class="eyebrow">CENTRAL DE ALERTAS</span><h2>Notificações</h2></div><button id="closeNotifications" type="button" aria-label="Fechar">×</button></div><div id="notificationList" class="notification-list"><p>Carregando alertas…</p></div></section></div>
+        <div class="notification-center"><button id="notificationButton" class="notification-button" type="button" aria-label="Abrir notificações" aria-expanded="false"><img src="icone-plataforma-alerta.webp" alt=""><span id="notificationBadge" class="notification-badge hidden">0</span></button><section id="notificationPanel" class="notification-panel hidden"><div class="notification-head"><div><span class="eyebrow">CENTRAL DE ALERTAS</span><h2>Notificações</h2></div><button id="closeNotifications" type="button" aria-label="Fechar">×</button></div><div id="notificationList" class="notification-list"><p>Carregando alertas…</p></div></section></div>
       </header>
 
       <main class="content">
@@ -90,7 +90,6 @@
             <div class="section-heading"><div><span class="eyebrow">AÇÃO OPERACIONAL</span><h2 id="queueTitle">Pendências de hoje</h2><p class="muted">Equipamentos que precisam de acompanhamento, ordenados por prioridade e tempo sem atualização.</p></div><button class="text-button" data-go="tracking" type="button">Ver todos →</button></div>
             <div id="todayQueue" class="queue-list"><p class="loading-state">Carregando pendências…</p></div>
           </section>
-          <section class="surface agent-center" aria-labelledby="agentsTitle"><div class="section-heading"><div><h2 id="agentsTitle">Agentes do Equipa</h2><p class="muted">Sinais calculados a partir dos registros. Revise as evidências antes de tomar uma decisão.</p></div><button id="refreshAgents" class="text-button" type="button">Reanalisar</button></div><div id="agentCards" class="agent-grid"><p>Carregando análises…</p></div></section>
           <div class="summary-grid">
             <button class="summary-card" data-summary-filter="active"><span>Em acompanhamento</span><strong id="totalActive">0</strong><small>Ciclos ativos <b>→</b></small></button>
             <button class="summary-card attention" data-summary-filter="attention"><span>Atenção necessária</span><strong id="totalAttention">0</strong><small>Prioridade alta ou crítica <b>→</b></small></button>
