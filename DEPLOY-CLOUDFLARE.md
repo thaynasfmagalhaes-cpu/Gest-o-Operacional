@@ -14,3 +14,7 @@ Esta versão utiliza Cloudflare Workers para o site e Cloudflare D1 para o banco
 O sistema cria as tabelas e o primeiro administrador automaticamente na primeira abertura após o vínculo do banco.
 
 Nunca coloque senhas diretamente no GitHub.
+
+## Domínio Equipa
+
+O endereço desejado é `www.equipagestaoequipamentos.com`. Primeiro registre o domínio e adicione-o à mesma conta Cloudflare. Depois, no Worker, abra **Domínios e rotas > Adicionar > Domínio personalizado** e informe esse endereço. Mantenha o domínio atual funcionando até o novo aparecer como ativo.

@@ -4,20 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Controle de equipamentos, acompanhamentos e movimentações operacionais.">
-  <title>Ocyan | Gestão Operacional</title>
-  <link rel="icon" type="image/svg+xml" href="ocyan-logo.svg">
+  <title>Equipa | Gestão de Equipamentos</title>
+  <link rel="icon" type="image/png" href="equipa-logo.png">
   <link rel="stylesheet" href="app.css">
 </head>
 <body>
   <section id="loginView" class="login-view">
     <div class="login-brand">
-      <div class="ocyan-brand"><img src="ocyan-logo-white.svg" alt="Ocyan"></div>
-      <div><span class="eyebrow lime">CONTROLE INTEGRADO</span><h1>Gestão Operacional</h1></div>
+      <div class="ocyan-brand"><img src="equipa-logo.png" alt="Equipa Gestão de Equipamentos"></div>
+      <div><span class="eyebrow lime">CONTROLE INTEGRADO</span><h1>Equipa</h1><p class="brand-subtitle">Gestão de Equipamentos</p></div>
       <p>Equipamentos, movimentações e histórico reunidos em um único fluxo.</p>
       <ul><li>Rastreabilidade por TAG</li><li>Status operacional atualizado</li><li>Histórico completo por ciclo</li></ul>
     </div>
     <div class="login-card">
-      <div class="login-card-brand"><img src="ocyan-logo-white.svg" alt="Ocyan"><span>Portal operacional</span></div>
+      <div class="login-card-brand"><img src="equipa-logo.png" alt="Equipa"></div>
       <div class="auth-tabs" role="tablist" aria-label="Opções de acesso">
         <button class="auth-tab active" type="button" role="tab" aria-selected="true" data-auth="login">Entrar</button>
         <button class="auth-tab" type="button" role="tab" aria-selected="false" data-auth="register">Cadastrar</button>
@@ -40,7 +40,6 @@
         <form id="registerForm">
           <label>Nome completo<input name="nome" autocomplete="name" required placeholder="Seu nome"></label>
           <label>E-mail corporativo<input type="email" name="email" autocomplete="email" required placeholder="nome@empresa.com"></label>
-          <label>Setor<input name="setor" required placeholder="Ex.: Operações"></label>
           <label>Senha<span class="password-field"><input type="password" name="password" autocomplete="new-password" minlength="8" required placeholder="Mínimo de 8 caracteres"><button class="register-password-toggle" type="button" aria-label="Mostrar senha">Mostrar</button></span></label>
           <p id="registerMessage" class="form-success" role="status"></p>
           <p id="registerError" class="form-error" role="alert"></p>
@@ -52,12 +51,13 @@
 
   <div id="appView" class="app-view hidden">
     <aside class="sidebar" id="sidebar">
-      <div class="logo"><img src="ocyan-logo-white.svg" alt="Ocyan"><span>Gestão Operacional</span></div>
+      <div class="logo"><img src="equipa-logo.png" alt="Equipa"><span>Gestão de Equipamentos</span></div>
       <nav>
         <button class="nav-item active" data-view="dashboard"><span>▦</span>Painel geral</button>
-        <button class="nav-item" data-view="tracking"><span>⇄</span>Acompanhamentos</button>
         <button class="nav-item" data-view="new"><span>＋</span>Novo acompanhamento</button>
+        <button class="nav-item" data-view="tracking"><span>⇄</span>Acompanhamentos</button>
         <button id="profileNav" class="nav-item" type="button"><span>◉</span>Meu perfil</button>
+        <a id="operationalSettingsLink" class="nav-item" href="/ux-agent.html"><span>⚙</span>Configurações</a>
         <a id="adminSettingsLink" class="nav-item" href="/ux-agent.html"><span>⚙</span>Painel administrativo <b id="adminAlertBadge" class="nav-badge hidden">0</b></a>
       </nav>
       <div class="sidebar-footer"><button id="openProfile" class="sidebar-profile" type="button" title="Editar meu perfil"><span class="avatar-wrap"><span id="userInitials" class="avatar">US</span><img id="userPhoto" class="user-photo hidden" alt="Foto do usuário"></span><span class="sidebar-user"><strong id="userName">Usuário</strong><small id="userRole">Operacional</small></span></button><button id="logout" title="Sair" aria-label="Sair">↪</button></div>
@@ -65,10 +65,8 @@
     <button id="sidebarBackdrop" class="sidebar-backdrop" aria-label="Fechar menu"></button>
 
     <section class="workspace">
-      <header class="workspace-header">
+      <header class="workspace-header minimal-header">
         <button id="menuToggle" class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
-        <img class="header-logo" src="ocyan-logo.svg" alt="Ocyan"><div class="header-title"><span class="eyebrow">GESTÃO OPERACIONAL</span><h1 id="pageTitle">Visão geral</h1></div>
-        <div class="header-status"><span class="live-dot"></span>Sistema online</div>
         <div class="notification-center"><button id="notificationButton" class="notification-button" type="button" aria-label="Abrir notificações" aria-expanded="false">🔔<span id="notificationBadge" class="notification-badge hidden">0</span></button><section id="notificationPanel" class="notification-panel hidden"><div class="notification-head"><div><span class="eyebrow">CENTRAL DE ALERTAS</span><h2>Notificações</h2></div><button id="closeNotifications" type="button" aria-label="Fechar">×</button></div><div id="notificationList" class="notification-list"><p>Carregando alertas…</p></div></section></div>
       </header>
 
@@ -104,7 +102,7 @@
             </article>
           </section>
           <section id="history" class="surface history-surface hidden">
-            <div class="section-heading"><div><span class="eyebrow">AUDITORIA OPERACIONAL</span><h2>Histórico geral</h2><p id="historyResults" class="muted">Todos os registros e alterações realizados no sistema.</p></div><div class="history-actions"><button id="closeGeneralHistory" class="text-button" type="button">Fechar histórico ×</button></div></div>
+            <div class="section-heading"><div><span class="eyebrow">AUDITORIA OPERACIONAL</span><h2>Histórico geral</h2><p id="historyResults" class="muted">Todos os registros e alterações realizados no sistema.</p></div><div class="history-actions"><button id="exportHistory" class="button button-primary" type="button">Exportar para Excel</button><button id="closeGeneralHistory" class="text-button" type="button">Fechar histórico ×</button></div></div>
             <div class="history-filters"><input id="historySearch" type="search" placeholder="Buscar TAG, equipamento, usuário ou OS"><select id="historyStatus"><option value="">Todos os status</option></select><input id="historyDate" type="date" aria-label="Filtrar por data"><button id="clearHistoryFilters" class="button button-secondary" type="button">Limpar</button></div>
             <div class="history-table-wrap"><table class="history-table"><thead><tr><th>Equipamento</th><th>Alteração</th><th>Responsável</th><th>OS</th><th>Destino</th><th>Data e hora</th></tr></thead><tbody id="generalHistoryList"><tr><td colspan="6">Carregando histórico…</td></tr></tbody></table></div>
           </section>
@@ -128,7 +126,7 @@
             <div class="section-heading"><div><span class="eyebrow">NOVO CICLO</span><h2>Novo acompanhamento</h2><p class="muted">Registre a TAG e o destino para iniciar o rastreamento.</p></div></div>
             <form id="cycleForm" class="form-grid">
               <label>TAG do equipamento <em>*</em><input name="tag" required placeholder="Ex.: MDS-0308"><small>Identificação única fixada no equipamento.</small></label>
-              <label>Equipamento <em>*</em><input name="equipamento" required placeholder="Ex.: Máquina de solda"></label>
+              <label>Equipamento <em>*</em><select name="equipamento" id="equipmentSelect" required><option value="">Selecione o equipamento</option></select></label>
               <label>Destino <em>*</em><select name="destino_id" id="destinationSelect" required><option value="">Selecione o destino</option></select></label>
               <label>OS<input name="os" placeholder="Número da ordem de serviço"></label>
               <label>Tipo de propriedade<select name="tipo_propriedade"><option>Próprio</option><option>Alugado</option></select></label>
@@ -166,7 +164,6 @@
         <label>E-mail<input name="email" type="email" disabled></label>
         <label>Função<input name="funcao" placeholder="Ex.: Responsável Operacional do Patrimônio"></label>
         <label>Matrícula<input name="matricula" placeholder="Informe sua matrícula"></label>
-        <label class="full">Setor<input name="setor" disabled></label>
         <div class="full form-actions"><button type="button" class="button button-secondary" data-close-profile>Cancelar</button><button id="profileSubmit" class="button button-primary">Salvar perfil</button></div>
       </form>
     </section>

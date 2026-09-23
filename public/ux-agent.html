@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Configurações | Gestão Operacional</title>
+  <title>Configurações | Equipa</title>
   <link rel="stylesheet" href="ux-agent.css">
 </head>
 <body>
   <header class="topbar">
-    <img class="topbar-logo" src="ocyan-logo-white.svg" alt="Ocyan">
+    <img class="topbar-logo" src="equipa-logo.png" alt="Equipa">
     <div>
-      <span class="eyebrow">GESTÃO OPERACIONAL</span>
-      <h1>Painel administrativo</h1>
+      <span class="eyebrow">EQUIPA</span>
+      <h1 id="settingsTitle">Configurações</h1>
     </div>
     <div class="header-actions"><a href="/" class="button button-ghost">← Voltar ao painel</a><button id="refresh" class="button button-secondary">Atualizar dados</button></div>
   </header>
@@ -19,8 +19,8 @@
   <main>
     <section class="intro">
       <div>
-        <span class="status-dot"></span><strong>Administração do sistema</strong>
-        <p>Aprove novos usuários e acompanhe as configurações e melhorias da plataforma.</p>
+        <span class="status-dot"></span><strong>Evolução e configurações</strong>
+        <p>Envie melhorias para análise e acompanhe a evolução da plataforma Equipa.</p>
       </div>
       <button class="button button-primary" data-open="analysis">Sugerir melhoria</button>
     </section>
@@ -33,9 +33,10 @@
     </section>
 
     <div class="admin-layout"><nav class="tabs" aria-label="Seções de configurações">
-      <button class="tab active" data-tab="reminders">Notificações <span id="reminderBadge" class="tab-badge">0</span></button>
-      <button class="tab" data-tab="users">Aprovação de cadastros <span id="pendingBadge" class="tab-badge">0</span></button>
-      <button class="tab" data-tab="suggestions">Melhorias visuais</button>
+      <button class="tab active admin-only" data-tab="reminders">Notificações <span id="reminderBadge" class="tab-badge">0</span></button>
+      <button class="tab admin-only" data-tab="users">Aprovação de cadastros <span id="pendingBadge" class="tab-badge">0</span></button>
+      <button class="tab admin-only" data-tab="catalogs">Cadastros operacionais</button>
+      <button class="tab" data-tab="suggestions">Evolução do Sistema</button>
       <button class="tab" data-tab="feedback">Informar dificuldade</button>
       <button class="tab" data-tab="standards">Padrão visual</button>
     </nav><div class="admin-content">
@@ -68,6 +69,12 @@
         <select id="statusFilter" aria-label="Filtrar por status"><option value="">Todos os status</option><option>Pendente</option><option>Aprovada</option><option>Ajuste solicitado</option><option>Implementada</option><option>Rejeitada</option></select>
       </div>
       <div id="suggestionList" class="suggestion-list"><p class="empty">Carregando sugestões…</p></div>
+    </section>
+
+    <section id="catalogs" class="panel tab-panel hidden admin-only">
+      <div class="section-heading"><div><span class="eyebrow">PADRONIZAÇÃO</span><h2>Equipamentos e destinos</h2><p class="panel-description">Cadastre as opções que aparecerão no novo acompanhamento.</p></div></div>
+      <div class="catalog-grid"><form id="equipmentCatalogForm" class="catalog-form"><h3>Novo equipamento</h3><label>Nome padronizado<input name="nome" required placeholder="Ex.: Bomba Centrífuga"></label><button class="button button-primary">Adicionar equipamento</button></form><form id="destinationCatalogForm" class="catalog-form"><h3>Novo destino</h3><label>Nome padronizado<input name="nome" required placeholder="Ex.: Base Macaé"></label><label>Tipo<select name="tipo"><option>Destino operacional</option><option>Plataforma</option><option>Base</option><option>Fornecedor</option></select></label><button class="button button-primary">Adicionar destino</button></form></div>
+      <div class="catalog-lists"><article><h3>Equipamentos disponíveis</h3><div id="equipmentCatalogList" class="catalog-chips"></div></article><article><h3>Destinos disponíveis</h3><div id="destinationCatalogList" class="catalog-chips"></div></article></div>
     </section>
 
     <section id="feedback" class="panel tab-panel hidden">

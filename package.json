@@ -1,8 +1,8 @@
 {
-  "name": "gestao-operacional-cloudflare",
+  "name": "equipa-gestao-equipamentos",
   "version": "2.0.0",
   "private": true,
-  "description": "Gestão operacional de equipamentos com assistente UI/UX",
+  "description": "Equipa — plataforma de gestão e rastreabilidade de equipamentos",
   "type": "module",
   "main": "worker.js",
   "scripts": {

@@ -1,4 +1,4 @@
-# Gestão Operacional
+# Equipa — Gestão de Equipamentos
 
 Sistema de acompanhamento de equipamentos, movimentações e histórico operacional.
 
@@ -13,6 +13,8 @@ A versão online utiliza Cloudflare Workers e Cloudflare D1. Consulte `DEPLOY-CL
 - destinos, OS, prioridades e próximas ações;
 - histórico das movimentações;
 - painel responsivo;
-- Agente UI/UX com análises, feedback e aprovação administrativa.
+- catálogo padronizado de equipamentos e destinos;
+- exportação do histórico para Excel;
+- área de Evolução do Sistema com sugestões e aprovação administrativa.
 
 As credenciais administrativas devem ser configuradas como segredos na Cloudflare e nunca incluídas no repositório.

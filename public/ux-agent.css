@@ -112,3 +112,11 @@ body{color:#173042;background:linear-gradient(rgba(239,245,247,.91),rgba(224,234
 .reminder-form{background:rgba(218,229,233,.72);border-color:rgba(105,143,156,.2)}.reminder-card,.user-card,.suggestion,.standard{color:#173042;background:rgba(250,252,253,.93);border-color:rgba(105,143,156,.2)}
 .reminder-card p,.reminder-card small,.user-details span,.user-details small,.suggestion p,.role-control label{color:#607681}.suggestion strong{color:#173042}.user-actions{border-color:rgba(34,71,85,.12)}
 .button-secondary{background:#fff;color:#173042;border-color:rgba(105,143,156,.3)}
+
+/* Identidade Equipa e controles operacionais */
+.topbar-logo{width:96px;height:96px;object-fit:cover;border-radius:22px;box-shadow:0 14px 35px rgba(0,0,0,.28)}
+.button-primary{background:linear-gradient(135deg,#00abc2,#7bbd00);box-shadow:0 8px 22px rgba(0,171,194,.2)}.button-primary:hover{background:linear-gradient(135deg,#04c3d6,#9cdb00)}
+.panel,.metrics article,.intro{position:relative;overflow:hidden}.panel:before,.metrics article:before{content:'';position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,#00aec4,#b6ee00,#087aa2);background-size:200% 100%;animation:borderFlow 5s linear infinite}
+.catalog-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.catalog-form{display:grid;gap:14px;padding:18px;border:1px solid rgba(0,145,166,.18);border-radius:14px;background:rgba(255,255,255,.72)}.catalog-form h3,.catalog-lists h3{margin:0;color:#173042}.catalog-lists{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}.catalog-lists article{padding:18px;border-radius:14px;background:rgba(255,255,255,.58)}.catalog-chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}.catalog-chips span{padding:7px 10px;border:1px solid rgba(0,151,170,.2);border-radius:999px;background:#edf7f7;color:#31505d;font-size:11px;font-weight:750}
+@keyframes borderFlow{to{background-position:200% 0}}
+@media(max-width:760px){.catalog-grid,.catalog-lists{grid-template-columns:1fr}}
