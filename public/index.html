@@ -14,7 +14,6 @@
       <div class="ocyan-brand"><img src="equipa-logo-clean.webp" alt="Equipa Gestão de Equipamentos"></div>
     </div>
     <div class="login-card">
-      <div class="login-card-brand"><img src="equipa-logo-clean.webp" alt="Equipa"></div>
       <div class="auth-tabs" role="tablist" aria-label="Opções de acesso">
         <button class="auth-tab active" type="button" role="tab" aria-selected="true" data-auth="login">Entrar</button>
         <button class="auth-tab" type="button" role="tab" aria-selected="false" data-auth="register">Cadastrar</button>
@@ -128,11 +127,11 @@
 
         <section id="new" class="view-section hidden">
           <section class="surface form-surface">
-            <div class="section-heading"><div><span class="eyebrow">NOVO CICLO</span><h2>Novo acompanhamento</h2><p class="muted">Registre a TAG e o destino para iniciar o rastreamento.</p></div></div>
+            <div class="section-heading"><div><h2>Novo acompanhamento</h2><p class="muted">Registre a TAG e o destino para iniciar o rastreamento.</p></div></div>
             <form id="cycleForm" class="form-grid">
-              <label>TAG do equipamento <em>*</em><input name="tag" required placeholder="Ex.: MDS-0308"><small>Identificação única fixada no equipamento.</small></label>
-              <label>Equipamento <em>*</em><select name="equipamento" id="equipmentSelect" required><option value="">Selecione o equipamento</option></select></label>
-              <label>Destino <em>*</em><select name="destino_id" id="destinationSelect" required><option value="">Selecione o destino</option></select></label>
+              <label>TAG do equipamento<input name="tag" required placeholder="Ex.: MDS-0308"><small>Identificação única fixada no equipamento.</small></label>
+              <label>Equipamento<select name="equipamento" id="equipmentSelect" required><option value="">Selecione o equipamento</option></select></label>
+              <label>Destino<select name="destino_id" id="destinationSelect" required><option value="">Selecione o destino</option></select></label>
               <label>OS<input name="os" placeholder="Número da ordem de serviço"></label>
               <label>Tipo de propriedade<select name="tipo_propriedade"><option>Próprio</option><option>Alugado</option></select></label>
               <label>Prioridade<select name="prioridade"><option>Normal</option><option>Alta</option><option>Crítica</option></select></label>
