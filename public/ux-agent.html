@@ -13,7 +13,6 @@
     <div>
       <h1 id="settingsTitle">Painel de Controle</h1>
     </div>
-    <div class="header-actions"><a href="/" class="button button-ghost">← Voltar ao painel</a><button id="refresh" class="button button-secondary">Atualizar dados</button></div>
   </header>
 
   <main>
@@ -49,8 +48,7 @@
 
     <section id="overview" class="panel tab-panel admin-only">
       <div class="section-heading"><div><span class="eyebrow">CENTRO DE DECISÃO</span><h2>Visão operacional</h2><p class="panel-description">Pendências, gargalos e alterações recentes com dados do Equipa.</p></div><span id="overviewUpdated" class="overview-updated"></span></div>
-      <div class="overview-grid"><article class="overview-box"><div class="overview-box-head"><h3>Ações prioritárias</h3><button class="text-link" data-jump="users" type="button">Gerenciar acessos →</button></div><div id="adminPriorities"></div></article><article class="overview-box"><div class="overview-box-head"><h3>Gargalos por etapa</h3><span>Status de ciclos abertos</span></div><div id="adminBottlenecks"></div></article></div>
-      <article class="overview-box audit-box"><div class="overview-box-head"><div><h3>Últimas movimentações</h3><small>Quem alterou, qual TAG e quando</small></div><button id="exportAdminHistory" class="button button-secondary" type="button">Exportar histórico</button></div><div class="audit-filters"><input id="adminHistorySearch" type="search" aria-label="Buscar TAG no histórico" placeholder="Buscar TAG, usuário ou status"><select id="adminHistoryStatus" aria-label="Filtrar status"><option value="">Todos os status</option></select></div><div id="adminHistoryList" class="audit-list"></div></article>
+      <article class="overview-box"><div class="overview-box-head"><h3>Ações prioritárias</h3><button class="text-link" data-jump="users" type="button">Gerenciar acessos →</button></div><div id="adminPriorities"></div></article>
     </section>
 
     <section id="reminders" class="panel tab-panel hidden">

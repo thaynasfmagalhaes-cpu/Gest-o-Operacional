@@ -58,7 +58,7 @@
         <button class="nav-item" data-view="tracking"><span>⇄</span>Acompanhamentos</button>
         <button id="profileNav" class="nav-item" type="button"><span>◉</span>Meu perfil</button>
         <a id="operationalSettingsLink" class="nav-item" href="/ux-agent.html"><span>⚙</span>Configurações</a>
-        <a id="adminSettingsLink" class="nav-item" href="/ux-agent.html"><span>⚙</span>Painel administrativo <b id="adminAlertBadge" class="nav-badge hidden">0</b></a>
+        <a id="adminSettingsLink" class="nav-item" href="/ux-agent.html"><span>⚙</span>Painel de Controle <b id="adminAlertBadge" class="nav-badge hidden">0</b></a>
       </nav>
       <div class="sidebar-footer"><button id="openProfile" class="sidebar-profile" type="button" title="Editar meu perfil"><span class="avatar-wrap"><span id="userInitials" class="avatar">US</span><img id="userPhoto" class="user-photo hidden" alt="Foto do usuário"></span><span class="sidebar-user"><strong id="userName">Usuário</strong><small id="userRole">Operacional</small></span></button><button id="logout" title="Sair" aria-label="Sair">↪</button></div>
     </aside>
@@ -90,7 +90,7 @@
             <div class="section-heading"><div><span class="eyebrow">AÇÃO OPERACIONAL</span><h2 id="queueTitle">Pendências de hoje</h2><p class="muted">Equipamentos que precisam de acompanhamento, ordenados por prioridade e tempo sem atualização.</p></div><button class="text-button" data-go="tracking" type="button">Ver todos →</button></div>
             <div id="todayQueue" class="queue-list"><p class="loading-state">Carregando pendências…</p></div>
           </section>
-          <section class="surface agent-center" aria-labelledby="agentsTitle"><div class="section-heading"><div><span class="eyebrow">INTELIGÊNCIA OPERACIONAL</span><h2 id="agentsTitle">Agentes do Equipa</h2><p class="muted">Sinais calculados a partir dos registros. Revise as evidências antes de tomar uma decisão.</p></div><button id="refreshAgents" class="text-button" type="button">Atualizar análise</button></div><div id="agentCards" class="agent-grid"><p>Carregando análises…</p></div></section>
+          <section class="surface agent-center" aria-labelledby="agentsTitle"><div class="section-heading"><div><h2 id="agentsTitle">Agentes do Equipa</h2><p class="muted">Sinais calculados a partir dos registros. Revise as evidências antes de tomar uma decisão.</p></div><button id="refreshAgents" class="text-button" type="button">Reanalisar</button></div><div id="agentCards" class="agent-grid"><p>Carregando análises…</p></div></section>
           <div class="summary-grid">
             <button class="summary-card" data-summary-filter="active"><span>Em acompanhamento</span><strong id="totalActive">0</strong><small>Ciclos ativos <b>→</b></small></button>
             <button class="summary-card attention" data-summary-filter="attention"><span>Atenção necessária</span><strong id="totalAttention">0</strong><small>Prioridade alta ou crítica <b>→</b></small></button>
@@ -153,7 +153,8 @@
         <input type="hidden" name="id">
         <label>Status <em>*</em><select name="status" id="updateStatus" required></select></label>
         <label>Processo <em>*</em><select name="processo" id="updateProcess" required><option>Fluxo normal</option><option>Manutenção elétrica</option><option>Manutenção mecânica</option><option>Certificação</option><option>Recertificação</option><option>Reparo externo</option><option>Devolução</option><option>Backload</option><option>Descarte</option></select></label>
-        <label class="full">Próxima ação<input name="proxima_acao" placeholder="Informe o próximo passo"></label>
+        <label>Nº do romaneio<input name="romaneio" placeholder="Ex.: 18433"></label>
+        <label>Próxima ação<input name="proxima_acao" placeholder="Informe o próximo passo"></label>
         <label class="full">Observação<textarea name="observacao" rows="3" placeholder="Registre informações importantes desta atualização"></textarea></label>
         <fieldset class="full evidence-fields"><legend>Recebimento e documentação</legend><label class="check-row"><input type="checkbox" name="recebimento_confirmado" value="1"> Recebimento físico confirmado</label><label>Referência do checklist<input name="checklist_ref" placeholder="Link ou número do checklist"></label><label>Referência das fotos<input name="fotos_ref" placeholder="Link ou identificação das fotos"></label><label>Referência do certificado<input name="certificado_ref" placeholder="Link ou número do certificado"></label><label>Validade do certificado<input name="certificado_validade" type="date"></label><small>Registre links ou números verificáveis. O Equipa ainda não armazena anexos diretamente.</small></fieldset>
         <div class="full modal-history"><strong>Histórico recente</strong><div id="historyList" class="history-list"><span>Carregando…</span></div></div>

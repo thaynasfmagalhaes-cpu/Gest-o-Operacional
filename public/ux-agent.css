@@ -157,3 +157,7 @@ main{max-width:1500px}.topbar{gap:24px}.topbar h1{font-size:clamp(1.5rem,2.6vw,2
 @media(max-width:760px){.admin-menu-toggle{width:50px;height:50px}body:has(#adminTabs.open) .admin-menu-toggle{top:17px}}
 @media(prefers-reduced-motion:reduce){#adminTabs,.admin-menu-backdrop{transition:none}}
 .topbar{position:sticky!important;top:0;background:linear-gradient(105deg,rgba(3,39,61,.87),rgba(4,66,86,.65))!important;backdrop-filter:blur(16px);box-shadow:0 8px 30px rgba(0,25,40,.16)}
+/* v20: menu lateral desloca o conteúdo em telas grandes */
+@media(min-width:761px){body.admin-menu-open>.topbar,body.admin-menu-open>main{margin-left:320px;width:calc(100% - 320px);transition:margin-left .3s,width .3s}body>.topbar,body>main{transition:margin-left .3s,width .3s}body.admin-menu-open .admin-menu-backdrop{display:none!important}body.admin-menu-open .topbar{z-index:70!important}body.admin-menu-open .topbar>:not(.admin-menu-toggle){visibility:visible!important;pointer-events:auto!important}body.admin-menu-open .admin-menu-toggle{position:static!important;z-index:auto!important}#adminTabs{z-index:85!important}}
+@media(max-width:760px){body.admin-menu-open .topbar{z-index:90!important}body.admin-menu-open .admin-menu-backdrop{display:block!important}}
+#overview .overview-box{width:100%}#overview .admin-action{min-height:56px;font-size:.94rem}
