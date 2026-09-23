@@ -29,6 +29,8 @@
         <p id="loginError" class="form-error" role="alert"></p>
         <button id="loginButton" class="button button-primary full-button">Entrar no sistema</button>
       </form>
+      <button id="forgotPassword" class="text-button forgot-link" type="button">Esqueceu a senha?</button>
+      <form id="recoveryForm" class="hidden recovery-form"><p class="muted">Informe seu e-mail. O administrador receberá a solicitação para redefinir seu acesso.</p><label>E-mail cadastrado<input name="email" type="email" autocomplete="email" required></label><p id="recoveryMessage" role="status"></p><button class="button button-primary" type="submit">Solicitar redefinição</button><button id="cancelRecovery" class="text-button" type="button">Voltar ao login</button></form>
       </div>
       <div id="registerPanel" class="hidden">
         <span class="eyebrow">NOVO ACESSO</span>
@@ -37,6 +39,8 @@
         <form id="registerForm">
           <label>Nome completo<input name="nome" autocomplete="name" required placeholder="Seu nome"></label>
           <label>E-mail corporativo<input type="email" name="email" autocomplete="email" required placeholder="nome@empresa.com"></label>
+          <label>Função<input name="funcao" required placeholder="Ex.: Almoxarife"></label>
+          <label>Matrícula<input name="matricula" required placeholder="Sua matrícula"></label>
           <label>Senha<span class="password-field"><input type="password" name="password" autocomplete="new-password" minlength="8" required placeholder="Mínimo de 8 caracteres"><button class="register-password-toggle" type="button" aria-label="Mostrar senha">Mostrar</button></span></label>
           <p id="registerMessage" class="form-success" role="status"></p>
           <p id="registerError" class="form-error" role="alert"></p>
@@ -161,6 +165,8 @@
         <label>E-mail<input name="email" type="email" disabled></label>
         <label>Função<input name="funcao" placeholder="Ex.: Responsável Operacional do Patrimônio"></label>
         <label>Matrícula<input name="matricula" placeholder="Informe sua matrícula"></label>
+        <label>Alterar senha atual<input name="senha_atual" type="password" autocomplete="current-password" placeholder="Senha atual"></label>
+        <label>Nova senha<input name="nova_senha" type="password" autocomplete="new-password" minlength="8" placeholder="Mínimo de 8 caracteres"></label>
         <div class="full form-actions"><button type="button" class="button button-secondary" data-close-profile>Cancelar</button><button id="profileSubmit" class="button button-primary">Salvar perfil</button></div>
       </form>
     </section>

@@ -149,3 +149,8 @@ body{background:#05243a url('offshore-platform-realistic.webp') center/cover fix
 #toast.success-toast{background:#287a58;border:1px solid rgba(181,232,207,.65);box-shadow:0 15px 40px rgba(15,76,51,.32)}
 #profileModal .modal-backdrop{background:linear-gradient(rgba(1,24,40,.48),rgba(2,38,57,.56)),url('offshore-platform-realistic.webp') center/cover fixed no-repeat}
 #profileModal .profile-card{background:linear-gradient(145deg,rgba(247,252,253,.94),rgba(219,234,238,.92));backdrop-filter:blur(18px);border-color:rgba(201,236,239,.72)}
+.app-view,.workspace{background:linear-gradient(145deg,rgba(224,246,250,.94),rgba(231,246,250,.89) 55%,rgba(188,225,235,.92)),url('offshore-platform-realistic.webp') center/cover fixed}
+.form-surface,.modal-card,.panel,.dashboard-card,.profile-card{background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(229,248,250,.88))!important;box-shadow:0 22px 55px rgba(7,51,75,.13),inset 0 1px rgba(255,255,255,.9);backdrop-filter:blur(18px)}
+.modal-card{border:1px solid rgba(60,172,194,.22)}
+.forgot-link{display:block;margin:16px auto 0;color:#c1f1ef!important;font-weight:700;text-decoration:underline}
+.recovery-form{display:grid;gap:15px;margin-top:20px}.recovery-form.hidden{display:none}.recovery-form .muted{line-height:1.5}
