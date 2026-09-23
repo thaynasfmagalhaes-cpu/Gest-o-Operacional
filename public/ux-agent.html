@@ -8,7 +8,7 @@
 </head>
 <body>
   <header class="topbar">
-    <img class="topbar-logo" src="equipa-logo.png" alt="Equipa">
+    <img class="topbar-logo" src="equipa-logo-clean.webp" alt="Equipa">
     <div>
       <span class="eyebrow">EQUIPA</span>
       <h1 id="settingsTitle">Configurações</h1>
@@ -35,7 +35,7 @@
     <div class="admin-layout"><nav class="tabs" aria-label="Seções de configurações">
       <button class="tab active admin-only" data-tab="reminders">Notificações <span id="reminderBadge" class="tab-badge">0</span></button>
       <button class="tab admin-only" data-tab="users">Aprovação de cadastros <span id="pendingBadge" class="tab-badge">0</span></button>
-      <button class="tab admin-only" data-tab="catalogs">Cadastros operacionais</button>
+      <button class="tab admin-only" data-tab="catalogs">Plataformas e equipamentos</button>
       <button class="tab" data-tab="suggestions">Evolução do Sistema</button>
       <button class="tab" data-tab="feedback">Informar dificuldade</button>
       <button class="tab" data-tab="standards">Padrão visual</button>
@@ -72,8 +72,8 @@
     </section>
 
     <section id="catalogs" class="panel tab-panel hidden admin-only">
-      <div class="section-heading"><div><span class="eyebrow">PADRONIZAÇÃO</span><h2>Equipamentos e destinos</h2><p class="panel-description">Cadastre as opções que aparecerão no novo acompanhamento.</p></div></div>
-      <div class="catalog-grid"><form id="equipmentCatalogForm" class="catalog-form"><h3>Novo equipamento</h3><label>Nome padronizado<input name="nome" required placeholder="Ex.: Bomba Centrífuga"></label><button class="button button-primary">Adicionar equipamento</button></form><form id="destinationCatalogForm" class="catalog-form"><h3>Novo destino</h3><label>Nome padronizado<input name="nome" required placeholder="Ex.: Base Macaé"></label><label>Tipo<select name="tipo"><option>Destino operacional</option><option>Plataforma</option><option>Base</option><option>Fornecedor</option></select></label><button class="button button-primary">Adicionar destino</button></form></div>
+      <div class="section-heading"><div><span class="eyebrow">CADASTRO OPERACIONAL</span><h2>Plataformas, destinos e equipamentos</h2><p class="panel-description">As opções cadastradas aqui aparecem automaticamente no formulário de novo acompanhamento.</p></div></div>
+      <div class="catalog-grid"><form id="destinationCatalogForm" class="catalog-form"><h3>＋ Adicionar plataforma ou destino</h3><label>Nome padronizado<input name="nome" required placeholder="Ex.: P-81 ou Base Macaé"></label><label>Tipo<select name="tipo"><option>Plataforma</option><option>Destino operacional</option><option>Base</option><option>Fornecedor</option></select></label><button class="button button-primary">Cadastrar plataforma/destino</button></form><form id="equipmentCatalogForm" class="catalog-form"><h3>＋ Adicionar equipamento</h3><label>Nome padronizado<input name="nome" required placeholder="Ex.: Bomba Centrífuga"></label><button class="button button-primary">Cadastrar equipamento</button></form></div>
       <div class="catalog-lists"><article><h3>Equipamentos disponíveis</h3><div id="equipmentCatalogList" class="catalog-chips"></div></article><article><h3>Destinos disponíveis</h3><div id="destinationCatalogList" class="catalog-chips"></div></article></div>
     </section>
 

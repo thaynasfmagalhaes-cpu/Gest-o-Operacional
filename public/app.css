@@ -129,3 +129,19 @@ body:after{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradie
 .profile-card{background:linear-gradient(145deg,rgba(249,253,254,.98),rgba(218,233,237,.97));border:1px solid rgba(0,169,183,.25);box-shadow:0 34px 100px rgba(0,26,45,.4)}.profile-card:before{content:'';position:absolute;inset:0 0 auto;height:5px;border-radius:inherit;background:linear-gradient(90deg,#00b9cb,#b6ee00,#007caa)}
 @keyframes equipaSpin{to{transform:rotate(360deg)}}
 @media(max-width:900px){.minimal-header{height:62px}.status-overview{min-height:auto}}
+
+/* Equipa clean — mar contínuo, marca leve e acentos suaves */
+:root{--lime:#a8c95a;--success:#4f9875}
+body{background:#05243a url('offshore-platform-realistic.webp') center/cover fixed no-repeat}
+.login-view{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(390px,520px);gap:clamp(20px,4vw,64px);padding:clamp(24px,5vw,72px);background:linear-gradient(90deg,rgba(1,20,36,.48),rgba(2,29,46,.22)),url('offshore-platform-realistic.webp') center/cover fixed no-repeat}
+.login-brand{min-height:auto;padding:clamp(24px,5vw,72px);background:transparent!important}
+.login-card{width:100%;margin:0;align-self:center;background:linear-gradient(145deg,rgba(4,35,58,.91),rgba(5,51,72,.88));backdrop-filter:blur(18px);border-color:rgba(174,211,222,.28)}
+.ocyan-brand img,.login-card-brand img,.logo img{object-fit:contain;border-radius:0;box-shadow:none;background:transparent}
+.ocyan-brand img{width:min(440px,72vw);height:auto}.login-card-brand img{width:190px;height:auto}.logo img{width:188px;height:auto}
+.workspace{background:linear-gradient(rgba(2,31,50,.34),rgba(4,43,62,.36)),url('offshore-platform-realistic.webp') center/cover fixed no-repeat}
+.workspace:before{display:none}.sidebar{background:linear-gradient(180deg,rgba(2,34,54,.93),rgba(2,24,40,.96)),url('offshore-platform-realistic.webp') 25% center/cover no-repeat}.welcome-banner{background:linear-gradient(90deg,rgba(2,31,51,.95),rgba(2,39,61,.68),rgba(2,39,61,.2)),url('offshore-platform-realistic.webp') center 53%/cover no-repeat}
+.minimal-header{position:absolute;inset:0 0 auto 0;background:transparent!important;box-shadow:none!important;border:0!important;backdrop-filter:none;pointer-events:none}
+.minimal-header>*{pointer-events:auto}.content{padding-top:72px}
+.button-primary,.record-action{background:linear-gradient(135deg,#039fb4,#9aba56)}.button-primary:hover,.record-action:hover{background:linear-gradient(135deg,#08b0c3,#aacd64)}
+.nav-item.active{box-shadow:inset 3px 0 #a8c95a}.user-photo{border-color:rgba(168,201,90,.82)}
+@media(max-width:760px){.login-view{grid-template-columns:1fr;padding:0}.login-brand{min-height:290px;padding:28px 25px}.login-card{border-radius:22px;margin:0 16px 24px;width:auto}.content{padding-top:66px}}
