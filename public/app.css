@@ -247,3 +247,15 @@ button:focus-visible,.button:focus-visible,a:focus-visible{outline:3px solid #57
 .guardian-romaneio{border-color:rgba(7,136,165,.35)!important}.guardian-romaneio strong{color:#075474!important}
 @media(max-width:1120px){.guardian-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:680px){.guardian-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* v24: fotos anexadas e indicadores com significado visual */
+.photo-drop{padding:18px;border:2px dashed #92c9d7;border-radius:15px;background:rgba(225,246,250,.68);color:#075474;display:grid;gap:7px}.photo-drop.dragging{border-color:#008da8;background:#d4f2f7}.photo-drop input{background:transparent!important;padding:8px!important;min-height:0}.photo-drop small{color:#367088}.evidence-preview,.history-evidence{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.evidence-selected,.history-evidence a,.history-evidence span,.evidence-download{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border:1px solid #b8dae3;border-radius:9px;background:#e7f7fa;color:#075474;font-size:.78rem;font-weight:700;overflow-wrap:anywhere}.evidence-selected button{border:0;background:transparent;color:#075474;cursor:pointer;font-size:1.1rem}.evidence-download{cursor:pointer}.history-evidence a{text-decoration:underline}.history-evidence{margin-top:10px}
+#dashboard .guardian-kpis article:nth-child(1) strong{color:#075474!important}#dashboard .guardian-kpis article.guardian-critical strong{color:#b33140!important}#dashboard .guardian-kpis article.guardian-warning strong{color:#986113!important}#dashboard .guardian-kpis article:nth-child(4) strong{color:#975b15!important}#dashboard .guardian-kpis article.guardian-romaneio strong{color:#0a7185!important}
+
+/* v25: sino discreto em tom de oceano, sem plataforma nem caixa */
+.notification-button{width:54px!important;height:54px!important;filter:none!important;color:#075474!important}
+.notification-button svg{width:39px;height:39px;fill:rgba(7,84,116,.11);stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 5px rgba(0,41,65,.18))}
+.notification-button:hover{filter:none!important}.notification-button:hover svg{fill:rgba(7,84,116,.2)}
+@media(max-width:760px){.notification-button{width:48px!important;height:48px!important}.notification-button svg{width:34px;height:34px}}
+
+/* Paleta suave sobre a logo original, mantendo letras e contornos nítidos. */
+.ocyan-brand img,.logo img,.floating-logo{filter:url(#equipaPalette)!important}

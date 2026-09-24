@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="app.css">
 </head>
 <body>
+  <svg class="logo-palette-defs" aria-hidden="true" width="0" height="0" focusable="false"><filter id="equipaPalette" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values=".906 -.053 .147 0 0  .537 .340 .123 0 0  .435 .022 .543 0 0  0 0 0 1 0"/></filter></svg>
   <section id="loginView" class="login-view">
     <div class="login-brand">
       <div class="ocyan-brand"><img src="equipa-logo-clean.webp" alt="Equipa Gestão de Equipamentos"></div>
@@ -29,7 +30,8 @@
         <button id="loginButton" class="button button-primary full-button">Entrar no sistema</button>
       </form>
       <button id="forgotPassword" class="text-button forgot-link" type="button">Esqueceu a senha?</button>
-      <form id="recoveryForm" class="hidden recovery-form"><p class="muted">Informe seu e-mail. O administrador receberá a solicitação para redefinir seu acesso.</p><label>E-mail cadastrado<input name="email" type="email" autocomplete="email" required></label><p id="recoveryMessage" role="status"></p><button class="button button-primary" type="submit">Solicitar redefinição</button><button id="cancelRecovery" class="text-button" type="button">Voltar ao login</button></form>
+      <form id="recoveryForm" class="hidden recovery-form"><p class="muted">Informe o e-mail cadastrado para receber um link de redefinição válido por 30 minutos.</p><label>E-mail cadastrado<input name="email" type="email" autocomplete="email" required></label><p id="recoveryMessage" role="status"></p><button class="button button-primary" type="submit">Solicitar redefinição</button><button id="cancelRecovery" class="text-button" type="button">Voltar ao login</button></form>
+      <form id="resetPasswordForm" class="hidden recovery-form"><p class="muted">Defina uma nova senha para o e-mail confirmado.</p><label>Nova senha<input name="senha" type="password" autocomplete="new-password" minlength="8" required></label><label>Confirmar nova senha<input name="confirmacao" type="password" autocomplete="new-password" minlength="8" required></label><p id="resetPasswordMessage" role="status"></p><button class="button button-primary" type="submit">Salvar nova senha</button></form>
       </div>
       <div id="registerPanel" class="hidden">
         <span class="eyebrow">NOVO ACESSO</span>
@@ -68,7 +70,7 @@
       <header class="workspace-header minimal-header">
         <button id="menuToggle" class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false"><span aria-hidden="true">☰</span></button>
         <img class="floating-logo" src="equipa-logo-mark.webp" alt="Equipa">
-        <div class="notification-center"><button id="notificationButton" class="notification-button" type="button" aria-label="Abrir notificações" aria-expanded="false"><img src="icone-plataforma-alerta.webp" alt=""><span id="notificationBadge" class="notification-badge hidden">0</span></button><section id="notificationPanel" class="notification-panel hidden"><div class="notification-head"><div><span class="eyebrow">CENTRAL DE ALERTAS</span><h2>Notificações</h2></div><button id="closeNotifications" type="button" aria-label="Fechar">×</button></div><div id="notificationList" class="notification-list"><p>Carregando alertas…</p></div></section></div>
+        <div class="notification-center"><button id="notificationButton" class="notification-button" type="button" aria-label="Abrir notificações" aria-expanded="false"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M24 7c-7 0-12 5-12 12v8c0 3-1.5 5-4 7h32c-2.5-2-4-4-4-7v-8c0-7-5-12-12-12Z"/><path d="M19 39c.8 2.3 2.6 3.5 5 3.5s4.2-1.2 5-3.5"/><path d="M24 4v3"/></svg><span id="notificationBadge" class="notification-badge hidden">0</span></button><section id="notificationPanel" class="notification-panel hidden"><div class="notification-head"><div><span class="eyebrow">CENTRAL DE ALERTAS</span><h2>Notificações</h2></div><button id="closeNotifications" type="button" aria-label="Fechar">×</button></div><div id="notificationList" class="notification-list"><p>Carregando alertas…</p></div></section></div>
       </header>
 
       <main class="content">
@@ -151,12 +153,12 @@
       <div class="modal-header"><div><span class="eyebrow">ATUALIZAR PROCESSO</span><h2 id="updateTitle">Acompanhamento</h2><p id="updateSubtitle" class="muted"></p></div><button class="modal-close" type="button" data-close-modal aria-label="Fechar">×</button></div>
       <form id="updateForm" class="form-grid">
         <input type="hidden" name="id">
-        <label>Status <em>*</em><select name="status" id="updateStatus" required></select></label>
-        <label>Processo <em>*</em><select name="processo" id="updateProcess" required><option>Fluxo normal</option><option>Manutenção elétrica</option><option>Manutenção mecânica</option><option>Certificação</option><option>Recertificação</option><option>Reparo externo</option><option>Devolução</option><option>Backload</option><option>Descarte</option></select></label>
+        <label>Status<select name="status" id="updateStatus" required></select></label>
+        <label>Processo<select name="processo" id="updateProcess" required><option>Fluxo normal</option><option>Manutenção elétrica</option><option>Manutenção mecânica</option><option>Certificação</option><option>Recertificação</option><option>Reparo externo</option><option>Devolução</option><option>Backload</option><option>Descarte</option></select></label>
         <label>Nº do romaneio<input name="romaneio" placeholder="Ex.: 18433"></label>
         <label>Próxima ação<input name="proxima_acao" placeholder="Informe o próximo passo"></label>
         <label class="full">Observação<textarea name="observacao" rows="3" placeholder="Registre informações importantes desta atualização"></textarea></label>
-        <fieldset class="full evidence-fields"><legend>Recebimento e documentação</legend><label class="check-row"><input type="checkbox" name="recebimento_confirmado" value="1"> Recebimento físico confirmado</label><label>Referência do checklist<input name="checklist_ref" placeholder="Link ou número do checklist"></label><label>Referência das fotos<input name="fotos_ref" placeholder="Link ou identificação das fotos"></label><label>Referência do certificado<input name="certificado_ref" placeholder="Link ou número do certificado"></label><label>Validade do certificado<input name="certificado_validade" type="date"></label><small>Registre links ou números verificáveis. O Equipa ainda não armazena anexos diretamente.</small></fieldset>
+        <fieldset class="full evidence-fields"><legend>Recebimento e documentação</legend><label class="check-row"><input type="checkbox" name="recebimento_confirmado" value="1"> Recebimento físico confirmado</label><label>Referência do checklist<input name="checklist_ref" placeholder="Link ou número do checklist"></label><label>Link ou referência das fotos<input name="fotos_ref" placeholder="Link ou identificação das fotos"></label><div class="full photo-drop" id="evidenceDrop" role="group" aria-label="Fotos da movimentação"><strong>Arraste fotos aqui ou escolha no dispositivo</strong><small>Até 3 fotos JPG, PNG ou WebP por atualização. Serão compactadas antes de salvar.</small><input id="evidenceFiles" type="file" accept="image/jpeg,image/png,image/webp" multiple><div id="evidencePreview" class="evidence-preview" aria-live="polite"></div></div><label>Referência do certificado<input name="certificado_ref" placeholder="Link ou número do certificado"></label><label>Validade do certificado<input name="certificado_validade" type="date"></label><small>Links, referências e fotos ficam registrados na movimentação para consulta posterior.</small></fieldset>
         <div class="full modal-history"><strong>Histórico recente</strong><div id="historyList" class="history-list"><span>Carregando…</span></div></div>
         <div class="full form-actions"><button type="button" class="button button-secondary" data-close-modal>Cancelar</button><button id="updateSubmit" class="button button-primary">Salvar atualização</button></div>
       </form>
@@ -184,5 +186,6 @@
   </div>
   <div id="toast" role="status" aria-live="polite"></div>
   <script src="app.js"></script>
+  <script src="microinteractions.js"></script>
 </body>
 </html>
