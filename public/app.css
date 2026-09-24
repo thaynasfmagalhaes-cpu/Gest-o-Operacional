@@ -267,3 +267,14 @@ button:focus-visible,.button:focus-visible,a:focus-visible{outline:3px solid #57
 .notification-button .bell-detail{fill:none;stroke:#087b86;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
 .notification-button:hover svg,.notification-button.tilt-live svg{filter:drop-shadow(0 4px 2px rgba(230,255,255,.72)) drop-shadow(0 12px 9px rgba(0,40,61,.44))!important}
 @media(prefers-reduced-motion:reduce){.notification-button svg{transform:none!important;transition:none!important}}
+
+/* Bordas dos quadrados: azul único da marca e relevo que acompanha o mouse. */
+:is(.surface,.form-surface,.modal-card,.profile-card,.summary-card,.guardian-command,.guardian-kpis article,.dashboard-card,.equipment-card,.chart-surface,.history-surface,.guardian-panel,.login-card,.notification-panel,.record,.queue-item){border-color:#075474!important;border-top-color:#075474!important;border-left-color:#075474!important;box-shadow:var(--card-shadow,0 10px 26px rgba(3,54,83,.18),inset 0 1px 2px rgba(225,249,255,.6),inset 0 -3px 7px rgba(5,84,116,.12))!important;transition:transform .13s ease-out,box-shadow .13s ease-out!important}
+@media(hover:hover) and (pointer:fine){:is(.surface,.form-surface,.modal-card,.profile-card,.guardian-command,.guardian-kpis article,.dashboard-card,.equipment-card,.chart-surface,.history-surface,.guardian-panel,.login-card,.notification-panel,.record,.queue-item).edge-live{transform:var(--card-transform,none)!important}}
+@media(prefers-reduced-motion:reduce){:is(.surface,.form-surface,.modal-card,.profile-card,.summary-card,.guardian-command,.guardian-kpis article,.dashboard-card,.equipment-card,.chart-surface,.history-surface,.guardian-panel,.login-card,.notification-panel,.record,.queue-item){--card-shadow:0 10px 26px rgba(3,54,83,.18),inset 0 1px 2px rgba(225,249,255,.6)!important;transform:none!important;transition:none!important}}
+
+/* Logo em perspectiva e verde do sino próximo ao verde vivo da marca. */
+.floating-logo{transform-origin:center;transition:transform .28s cubic-bezier(.2,.8,.2,1);filter:url(#equipaPalette) drop-shadow(0 8px 8px rgba(0,43,66,.28))!important;backface-visibility:hidden}
+.floating-logo.logo-tilt-live{transition:transform 40ms linear}
+.notification-button .bell-detail{stroke:#a5dd22}
+@media(prefers-reduced-motion:reduce){.floating-logo{transform:none!important;transition:none!important}}

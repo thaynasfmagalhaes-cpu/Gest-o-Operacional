@@ -44,4 +44,55 @@
   window.addEventListener('scroll',clear,{passive:true});
   reducedMotion.addEventListener('change',clear);
   finePointer.addEventListener('change',clear);
+
+  // A iluminação das bordas dos cartões acompanha o ponteiro sem mover os campos internos.
+  const cardSelector='.surface,.form-surface,.modal-card,.profile-card,.summary-card,.guardian-command,.guardian-kpis article,.dashboard-card,.equipment-card,.chart-surface,.history-surface,.guardian-panel,.login-card,.notification-panel,.record,.queue-item,.panel,.metrics article,.overview-box,.user-card,.reminder-card,.suggestion,.standard,.intro';
+  let card=null,cardFrame=0,cardPoint=null;
+  function clearCard(){
+    cancelAnimationFrame(cardFrame);cardFrame=0;cardPoint=null;
+    if(card){card.style.removeProperty('--card-shadow');card.style.removeProperty('--card-transform');card.classList.remove('edge-live')}
+    card=null;
+  }
+  function drawCard(){
+    cardFrame=0;
+    if(!card||!cardPoint)return;
+    const rect=card.getBoundingClientRect();
+    if(!rect.width||!rect.height)return;
+    const x=Math.max(-1,Math.min(1,(cardPoint.x-rect.left)/rect.width*2-1));
+    const y=Math.max(-1,Math.min(1,(cardPoint.y-rect.top)/rect.height*2-1));
+    card.style.setProperty('--card-shadow',`${(-x*13).toFixed(1)}px ${(16-y*8).toFixed(1)}px 32px rgba(3,54,83,.27), inset ${(x*3).toFixed(1)}px ${(y*3).toFixed(1)}px 3px rgba(220,249,255,.72), inset ${(-x*4).toFixed(1)}px ${(-y*4).toFixed(1)}px 8px rgba(5,84,116,.23), 0 0 0 1px rgba(7,84,116,.28)`);
+    if(rect.width<=480&&!card.matches('button,[role="button"]'))card.style.setProperty('--card-transform',`perspective(1000px) rotateX(${(-y*2.5).toFixed(2)}deg) rotateY(${(x*3).toFixed(2)}deg) translateZ(3px)`);
+  }
+  document.addEventListener('pointermove',event=>{
+    if(!finePointer.matches||reducedMotion.matches||event.pointerType!=='mouse'){clearCard();return}
+    const next=event.target.closest(cardSelector);
+    if(next!==card){clearCard();card=next;if(card)card.classList.add('edge-live')}
+    if(card){cardPoint={x:event.clientX,y:event.clientY};if(!cardFrame)cardFrame=requestAnimationFrame(drawCard)}
+  },{passive:true});
+  window.addEventListener('scroll',clearCard,{passive:true});
+  window.addEventListener('blur',clearCard);
+  reducedMotion.addEventListener('change',clearCard);
+
+  // A logo do cabeçalho responde ao cursor sem interferir nos botões ou no menu.
+  const logo=document.querySelector('.floating-logo');
+  if(logo){
+    let logoFrame=0,logoPoint=null;
+    const resetLogo=()=>{cancelAnimationFrame(logoFrame);logoFrame=0;logoPoint=null;logo.style.removeProperty('transform');logo.classList.remove('logo-tilt-live')};
+    logo.addEventListener('pointermove',event=>{
+      if(!finePointer.matches||reducedMotion.matches||event.pointerType!=='mouse')return;
+      logoPoint={x:event.clientX,y:event.clientY};
+      if(logoFrame)return;
+      logoFrame=requestAnimationFrame(()=>{
+        logoFrame=0;
+        const r=logo.getBoundingClientRect();
+        const x=Math.max(-1,Math.min(1,(logoPoint.x-r.left)/r.width*2-1));
+        const y=Math.max(-1,Math.min(1,(logoPoint.y-r.top)/r.height*2-1));
+        logo.classList.add('logo-tilt-live');
+        logo.style.transform=`perspective(600px) translate3d(${(x*8).toFixed(1)}px,${(y*6).toFixed(1)}px,18px) rotateX(${(-y*13).toFixed(1)}deg) rotateY(${(x*17).toFixed(1)}deg) scale(1.06)`;
+      });
+    },{passive:true});
+    logo.addEventListener('pointerleave',resetLogo);
+    window.addEventListener('blur',resetLogo);
+    reducedMotion.addEventListener('change',resetLogo);
+  }
 })();
