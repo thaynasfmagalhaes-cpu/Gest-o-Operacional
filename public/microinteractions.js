@@ -11,6 +11,8 @@
       active.style.transition='transform 300ms cubic-bezier(.2,.85,.25,1), box-shadow 300ms ease';
       active.style.removeProperty('transform');
       active.style.removeProperty('box-shadow');
+      active.style.removeProperty('--bell-x');
+      active.style.removeProperty('--bell-y');
       active.classList.remove('tilt-live');
     }
     active=null;origin=null;pressed=false;
@@ -20,15 +22,17 @@
     if(!active||!point||!origin)return;
     const x=Math.max(-1,Math.min(1,(point.x-origin.left)/origin.width*2-1));
     const y=Math.max(-1,Math.min(1,(point.y-origin.top)/origin.height*2-1));
-    const depth=pressed?-3:8;
-    active.style.transform=`perspective(650px) translate3d(${(x*2.5).toFixed(2)}px,${(y*2.5).toFixed(2)}px,${depth}px) rotateX(${(-y*7).toFixed(2)}deg) rotateY(${(x*9).toFixed(2)}deg) scale(${pressed?.975:1})`;
-    if(!active.classList.contains('notification-button'))active.style.boxShadow=`${(-x*6).toFixed(1)}px ${(9-y*4).toFixed(1)}px 20px rgba(4,52,75,.21), inset ${(x*2).toFixed(1)}px ${(y*2).toFixed(1)}px 4px rgba(255,255,255,.23)`;
+    const bell=active.classList.contains('notification-button');
+    const depth=pressed?-5:bell?18:14;
+    active.style.transform=`perspective(520px) translate3d(${(x*(bell?7:5)).toFixed(2)}px,${(y*(bell?7:5)).toFixed(2)}px,${depth}px) rotateX(${(-y*(bell?18:13)).toFixed(2)}deg) rotateY(${(x*(bell?22:17)).toFixed(2)}deg) scale(${pressed?.94:bell?1.07:1.035})`;
+    if(bell){active.style.setProperty('--bell-x',`${(x*4).toFixed(2)}px`);active.style.setProperty('--bell-y',`${(y*3).toFixed(2)}px`)}
+    else active.style.boxShadow=`${(-x*11).toFixed(1)}px ${(14-y*8).toFixed(1)}px 26px rgba(4,52,75,.26), inset ${(x*3).toFixed(1)}px ${(y*3).toFixed(1)}px 6px rgba(255,255,255,.3)`;
   }
   function track(event){
     if(!finePointer.matches||reducedMotion.matches||event.pointerType!=='mouse')return;
     const element=event.target.closest(selector);
     if(!eligible(element)){if(active)clear();return}
-    if(active!==element){clear();active=element;origin=element.getBoundingClientRect();if(!origin.width||!origin.height){clear();return}element.style.transition='transform 55ms linear, box-shadow 90ms linear';element.classList.add('tilt-live')}
+    if(active!==element){clear();active=element;origin=element.getBoundingClientRect();if(!origin.width||!origin.height){clear();return}element.style.transition='transform 35ms linear, box-shadow 55ms linear';element.classList.add('tilt-live')}
     point={x:event.clientX,y:event.clientY};
     if(!frame)frame=requestAnimationFrame(draw);
   }
@@ -37,6 +41,7 @@
   document.addEventListener('pointerup',()=>{if(active){pressed=false;if(!frame)frame=requestAnimationFrame(draw)}});
   document.addEventListener('pointercancel',clear);
   window.addEventListener('blur',clear);
+  window.addEventListener('scroll',clear,{passive:true});
   reducedMotion.addEventListener('change',clear);
   finePointer.addEventListener('change',clear);
 })();

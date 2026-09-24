@@ -8,9 +8,23 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "check": "node --check worker.js && node --check public/app.js && node --check public/ux-agent.js && node --check public/microinteractions.js"
+    "build:mobile": "esbuild mobile/native-features.js --bundle --format=iife --target=es2022 --outfile=public/native-features.js",
+    "mobile:sync": "npm run build:mobile && cap sync",
+    "mobile:android": "cap open android",
+    "mobile:ios": "cap open ios",
+    "check": "node --check worker.js && node --check public/app.js && node --check public/ux-agent.js && node --check public/microinteractions.js && node --check public/mobile-api.js && node --check public/native-features.js"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.5.2",
+    "esbuild": "^0.28.2",
     "wrangler": "^4.38.0"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/camera": "^8.2.4",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/ios": "^8.5.2"
   }
 }

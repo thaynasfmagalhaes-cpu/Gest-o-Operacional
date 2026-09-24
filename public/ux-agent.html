@@ -37,7 +37,7 @@
     </section>
 
     <div class="admin-layout"><button id="adminMenuBackdrop" class="admin-menu-backdrop" type="button" aria-label="Fechar menu"></button><nav id="adminTabs" class="tabs" aria-label="Seções de configurações">
-      <a class="tab admin-home-link" href="/">← Painel Geral</a>
+      <a class="tab admin-home-link" href="index.html">← Painel Geral</a>
       <button class="tab active admin-only" data-tab="overview">Visão operacional</button>
       <button class="tab admin-only" data-tab="reminders">Notificações <span id="reminderBadge" class="tab-badge">0</span></button>
       <button class="tab admin-only" data-tab="users">Aprovação de cadastros <span id="pendingBadge" class="tab-badge">0</span></button>
@@ -120,7 +120,9 @@
     </form>
   </dialog>
   <div id="toast" role="status" aria-live="polite"></div>
+  <script src="mobile-api.js"></script>
   <script src="ux-agent.js"></script>
   <script src="microinteractions.js"></script>
+  <script src="native-features.js"></script>
 </body>
 </html>

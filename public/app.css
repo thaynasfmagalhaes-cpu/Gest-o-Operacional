@@ -259,3 +259,11 @@ button:focus-visible,.button:focus-visible,a:focus-visible{outline:3px solid #57
 
 /* Paleta suave sobre a logo original, mantendo letras e contornos nítidos. */
 .ocyan-brand img,.logo img,.floating-logo{filter:url(#equipaPalette)!important}
+
+/* Sino azul e verde com volume, sem caixa; movimento acompanha o ponteiro. */
+.notification-button svg{overflow:visible;fill:none;stroke:none!important;transform:translate3d(var(--bell-x,0px),var(--bell-y,0px),0);transition:transform 45ms linear;filter:drop-shadow(0 3px 1px rgba(230,255,255,.55)) drop-shadow(0 8px 7px rgba(0,40,61,.36))!important}
+.notification-button .bell-body{fill:url(#bellOcean);stroke:#075474;stroke-width:1.5;stroke-linejoin:round}
+.notification-button .bell-shine{fill:url(#bellShine);stroke:none}
+.notification-button .bell-detail{fill:none;stroke:#087b86;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.notification-button:hover svg,.notification-button.tilt-live svg{filter:drop-shadow(0 4px 2px rgba(230,255,255,.72)) drop-shadow(0 12px 9px rgba(0,40,61,.44))!important}
+@media(prefers-reduced-motion:reduce){.notification-button svg{transform:none!important;transition:none!important}}

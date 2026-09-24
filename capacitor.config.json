@@ -1,0 +1,6 @@
+{
+  "appId": "com.equipa.gestao",
+  "appName": "Equipa",
+  "webDir": "public",
+  "server": { "hostname": "localhost" }
+}
