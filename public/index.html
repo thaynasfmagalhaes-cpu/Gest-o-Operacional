@@ -83,6 +83,7 @@
               <article class="guardian-critical"><span>Risco crítico</span><strong id="guardianCritical">—</strong><small>exigem prioridade</small></article>
               <article class="guardian-warning"><span>Parados +24h</span><strong id="guardianStopped">—</strong><small>sem movimentação</small></article>
               <article><span>Pendência documental</span><strong id="guardianDocs">—</strong><small>OS, romaneio, RFID ou fiscal</small></article>
+              <article class="guardian-romaneio"><span>Com romaneio</span><strong id="guardianWaybills">—</strong><small id="guardianWaybillsStale">em acompanhamento</small></article>
             </div>
             <div class="guardian-grid"><article class="guardian-panel"><div class="guardian-panel-title"><span>Prioridades recomendadas</span><small>ordenadas por risco</small></div><div id="guardianPriorities" class="guardian-priorities"><p>Analisando acompanhamentos…</p></div></article><article class="guardian-panel"><div class="guardian-panel-title"><span>Gargalos do fluxo</span><small>concentração por etapa</small></div><div id="guardianBottlenecks" class="guardian-bottlenecks"></div></article></div>
           </section>
@@ -120,7 +121,7 @@
 
         <section id="tracking" class="view-section hidden">
           <section class="surface">
-            <div class="section-heading"><div><span class="eyebrow">RASTREABILIDADE</span><h2>Acompanhamentos</h2><p class="muted" id="resultsLabel">Consulte todos os ciclos da operação.</p></div><div class="filters"><label class="search-box"><span class="sr-only">Buscar acompanhamentos</span><input id="searchInput" type="search" placeholder="Buscar TAG, equipamento ou OS"></label><select id="statusFilter" aria-label="Filtrar por status"><option value="">Todos os status</option></select><button id="clearFilters" class="button button-secondary filter-clear" type="button">Limpar</button></div></div>
+            <div class="section-heading"><div><span class="eyebrow">RASTREABILIDADE</span><h2>Acompanhamentos</h2><p class="muted" id="resultsLabel">Consulte todos os ciclos da operação.</p></div><div class="filters"><label class="search-box"><span class="sr-only">Buscar acompanhamentos</span><input id="searchInput" type="search" placeholder="Buscar TAG, equipamento, OS ou romaneio"></label><select id="statusFilter" aria-label="Filtrar por status"><option value="">Todos os status</option></select><button id="clearFilters" class="button button-secondary filter-clear" type="button">Limpar</button></div></div>
             <div class="record-head"><span>Equipamento</span><span>Destino / OS</span><span>Status</span><span>Próxima ação</span><span>Prioridade</span><span>Ação</span></div>
             <div id="trackingList" class="records"></div>
           </section>

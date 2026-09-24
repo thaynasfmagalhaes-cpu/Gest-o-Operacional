@@ -224,3 +224,26 @@ body,.app-view,.workspace,.login-view{background:linear-gradient(rgba(2,31,50,.3
 .button:hover:not(:disabled),.summary-card:hover,.record:hover{transform:translateY(-2px)}
 button:focus-visible,.button:focus-visible,a:focus-visible{outline:3px solid #57c8d8;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+/* v22: vidro claro no acesso, revelando o mesmo mar em toda a tela */
+.login-view{background:transparent!important}
+.login-card{background:linear-gradient(145deg,rgba(235,251,253,.24),rgba(208,239,245,.17))!important;border:1px solid rgba(255,255,255,.64)!important;box-shadow:0 16px 48px rgba(6,56,77,.15),inset 0 1px rgba(255,255,255,.72)!important;backdrop-filter:blur(4px)!important}
+.login-card h2,.login-card label{color:#073c56!important;text-shadow:0 1px 10px rgba(255,255,255,.65)}
+.login-card .muted{color:#184f65!important}.login-card .eyebrow{color:#006c86!important}.login-card .forgot-link{color:#075474!important}
+.login-card .auth-tabs{background:rgba(238,252,253,.38)!important;border:1px solid rgba(255,255,255,.56)}
+.login-card .auth-tab{color:#17536a!important}.login-card .auth-tab.active{background:rgba(238,252,253,.78)!important;color:#073c56!important}
+.login-card input{background:rgba(250,254,255,.84)!important}
+/* Relevo discreto em ações; não movimentar o painel nem a imagem do mar. */
+.button,.auth-tab,.nav-item,.menu-toggle,.record-action,.notification-button,button:not(.sidebar-backdrop):not(.modal-backdrop):not(.tag-link):not(.notification-button){transform:translate3d(0,0,0);transform-origin:center;transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s ease,filter .22s ease,background-color .22s ease;will-change:auto}
+@media(hover:hover) and (pointer:fine){.button:hover:not(:disabled),.auth-tab:hover:not(:disabled),.nav-item:hover,.menu-toggle:hover,.record-action:hover,.notification-button:hover,button:not(.sidebar-backdrop):not(.modal-backdrop):not(.tag-link):not(.notification-button):hover:not(:disabled){transform:perspective(650px) translate3d(0,-3px,3px) rotateX(2deg);filter:brightness(1.07);box-shadow:0 10px 18px rgba(4,52,75,.19),inset 0 1px rgba(255,255,255,.3)}}
+.button:active:not(:disabled),.auth-tab:active,.nav-item:active,.menu-toggle:active,.record-action:active,button:not(.sidebar-backdrop):not(.modal-backdrop):not(.tag-link):not(.notification-button):active:not(:disabled){transform:perspective(650px) translate3d(0,2px,-2px) scale(.975);filter:brightness(.96);box-shadow:inset 0 3px 9px rgba(2,39,57,.2)}
+@media(prefers-reduced-motion:reduce){.button,.auth-tab,.nav-item,.menu-toggle,.record-action,.notification-button,button{transform:none!important;transition:none!important}}
+
+/* v23: romaneio visível na relação de acompanhamentos */
+.romaneio-chip{display:inline-flex;align-items:center;justify-self:start;width:max-content;max-width:100%;margin-top:5px;padding:4px 9px;border:1px solid #a7d8e3;border-radius:999px;background:rgba(224,248,251,.88);color:#075474!important;font-size:.74rem;font-weight:800;line-height:1.25;overflow-wrap:anywhere}
+.record-main .romaneio-chip{display:table;white-space:normal}.queue-item .romaneio-chip{margin:1px 0 3px}
+
+/* v23: quinto indicador para romaneios que exigem conferência */
+.guardian-kpis{grid-template-columns:repeat(5,minmax(0,1fr))}
+.guardian-romaneio{border-color:rgba(7,136,165,.35)!important}.guardian-romaneio strong{color:#075474!important}
+@media(max-width:1120px){.guardian-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:680px){.guardian-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
