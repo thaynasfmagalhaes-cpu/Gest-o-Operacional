@@ -17,3 +17,21 @@ export function parseVisionAnswer(answer,catalog){
   if(!equipment&&type)equipment=catalog.find(name=>canonical(type).includes(canonical(name))&&canonical(name).length>5);
   return {tag,equipamento:equipment||'',aviso:tag&&equipment?'Confira a TAG e o equipamento antes de criar.':'Confira a foto e complete os campos não identificados.'};
 }
+
+export function parseTagAnswer(answer){
+  const raw=String(answer??'').trim();
+  if(/^(none|nenhuma|ileg[ií]vel|n[aã]o (?:consigo|vis[ií]vel|identificada))/i.test(raw))return '';
+  const hyphenated=raw.match(/\b([A-Z]{1,12}\s*[-–—]\s*\d{1,15})\b/i)?.[1];
+  const standalone=raw.match(/^\s*["'`]?([A-Z]{1,12}\d{1,15})["'`]?\s*[.!]?\s*$/i)?.[1];
+  const labeled=raw.match(/(?:tag|etiqueta|label)\s*(?:is|reads|:|=)?\s*["'`]?([A-Z]{1,12}\d{1,15})\b/i)?.[1];
+  const candidate=hyphenated||standalone||labeled;
+  return normalizeTag(candidate);
+}
+
+export function parseEquipmentAnswer(answer,catalog){
+  const raw=String(answer??'').trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  if(!raw||/^(none|nenhum|desconhecido|ilegivel)/.test(raw))return '';
+  const normalize=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  if(/\b(lixadeira|esmerilhadeira|rebarbadora|angle grinder)\b/.test(raw))return catalog.find(name=>['esmerilhadeira','lixadeira'].includes(normalize(name)))||'';
+  return catalog.find(name=>raw.includes(normalize(name)))||'';
+}
