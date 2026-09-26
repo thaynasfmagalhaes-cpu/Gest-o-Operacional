@@ -54,10 +54,11 @@ if(path==='/api/redefinir-senha'&&method==='POST'){const x=await body(request),t
 const user=await auth(request,env);if(!user)return json({erro:'Não autenticado'},401);
 if(path==='/api/identificar-equipamento'&&method==='POST'){
   if(!env.AI)return json({erro:'A leitura de fotos precisa ser ativada na configuração do servidor.'},503);
-  const x=await body(request);let photos;try{photos=decodedPhotos([x.foto])}catch(error){return json({erro:error.message},400)}
+  const x=await body(request);const image=x.foto?.data;
+  if(typeof image!=='string'||!/^data:image\/jpeg;base64,[A-Za-z0-9+/=]+$/.test(image)||image.length>1900000)return json({erro:'Envie uma foto JPG válida de até 1,4 MB para leitura.'},400);
   const catalog=(await env.DB.prepare('SELECT nome FROM catalogo_equipamentos WHERE ativo=1 ORDER BY nome').all()).results.map(row=>row.nome);
   try{
-    const response=await env.AI.run('@cf/moondream/moondream3.1-9B-A2B',{task:'query',image:x.foto.data,question:`Look at the attached photo of industrial equipment and its physical asset tag. Read only the asset tag physically visible on the equipment, not a model number or other printed text. Classify the equipment using exactly one of these catalog names when visually certain: ${catalog.join(', ')}. A handheld angle grinder/lixadeira is Esmerilhadeira. Respond only as JSON, e.g. {"tag":"LX-3445","equipamento":"Esmerilhadeira"}. If the tag or equipment is not clearly visible, return an empty string for that field. Never invent a tag.`,stream:false,reasoning:false,temperature:0,max_tokens:150});
+    const response=await env.AI.run('@cf/moondream/moondream3.1-9B-A2B',{task:'query',image,question:`Read the asset identification TAG printed on the sticker physically attached to this equipment and identify the equipment type. Do not use model numbers or text outside the photo. Respond ONLY as JSON with exactly two keys named tag and equipamento. Use an empty string when the tag is illegible or the equipment is unclear. Never invent a tag. Choose the equipment name from this catalog: ${catalog.join(', ')}. A handheld angle grinder/lixadeira is Esmerilhadeira.`,stream:false,reasoning:false,temperature:0,max_tokens:300});
     return json(parseVisionAnswer(response?.answer,catalog));
   }catch(error){console.error('Falha na leitura da foto:',error);return json({erro:'Não foi possível analisar a foto agora. Preencha os campos manualmente.'},503)}
 }
