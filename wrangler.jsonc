@@ -16,5 +16,6 @@
     }
   ],
   "send_email": [{ "name": "EMAIL" }],
+  "ai": { "binding": "AI" },
   "observability": { "enabled": true }
 }

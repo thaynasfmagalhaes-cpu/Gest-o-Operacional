@@ -133,8 +133,8 @@
           <section class="surface form-surface">
             <div class="section-heading"><div><h2>Novo acompanhamento</h2><p class="muted">Registre a TAG e o destino para iniciar o rastreamento.</p></div></div>
             <form id="cycleForm" class="form-grid">
-              <div class="full tag-photo-field"><label for="newTagPhoto">Foto do equipamento e da TAG</label><input id="newTagPhoto" type="file" accept="image/*" capture="environment"><small>Abra a câmera ou escolha uma foto. Se houver QR code ou código de barras, a TAG será preenchida para conferência.</small><img id="newTagPreview" class="hidden" alt="Prévia da foto do equipamento e da TAG"></div>
-              <label>TAG do equipamento<input name="tag" required placeholder="Ex.: MDS-0308"><small>Identificação única fixada no equipamento.</small></label>
+              <div class="full tag-photo-field"><label for="newTagPhoto">Foto do equipamento e da TAG</label><input id="newTagPhoto" type="file" accept="image/*" capture="environment"><small>Fotografe o equipamento com a TAG legível. O app tentará preencher a TAG e o tipo de equipamento.</small><span id="tagPhotoStatus" role="status" aria-live="polite"></span><img id="newTagPreview" class="hidden" alt="Prévia da foto do equipamento e da TAG"></div>
+              <label>TAG do equipamento<input name="tag" required autocapitalize="characters" placeholder="Ex.: LX-3445"><small>Confira as letras maiúsculas, o hífen e os números antes de criar.</small></label>
               <label>Equipamento<select name="equipamento" id="equipmentSelect" required><option value="">Selecione o equipamento</option></select></label>
               <label>Destino<select name="destino_id" id="destinationSelect" required><option value="">Selecione o destino</option></select></label>
               <label>OS<input name="os" placeholder="Número da ordem de serviço"></label>

@@ -12,7 +12,7 @@
     "mobile:sync": "npm run build:mobile && cap sync",
     "mobile:android": "cap open android",
     "mobile:ios": "cap open ios",
-    "check": "node --check worker.js && node --check public/app.js && node --check public/ux-agent.js && node --check public/microinteractions.js && node --check public/mobile-api.js && node --check public/native-features.js"
+    "check": "node --check worker.js && node --check tag-vision.js && node --check public/app.js && node --check public/ux-agent.js && node --check public/microinteractions.js && node --check public/mobile-api.js && node --check public/native-features.js"
   },
   "devDependencies": {
     "@capacitor/assets": "^3.0.5",
