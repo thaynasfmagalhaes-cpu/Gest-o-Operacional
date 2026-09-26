@@ -259,23 +259,3 @@ button:focus-visible,.button:focus-visible,a:focus-visible{outline:3px solid #57
 
 /* Paleta suave sobre a logo original, mantendo letras e contornos nítidos. */
 .ocyan-brand img,.logo img,.floating-logo{filter:url(#equipaPalette)!important}
-
-/* Sino azul e verde com volume, sem caixa; movimento acompanha o ponteiro. */
-.notification-button svg{overflow:visible;fill:none;stroke:none!important;transform:translate3d(var(--bell-x,0px),var(--bell-y,0px),0);transition:transform 45ms linear;filter:drop-shadow(0 3px 1px rgba(230,255,255,.55)) drop-shadow(0 8px 7px rgba(0,40,61,.36))!important}
-.notification-button .bell-body{fill:url(#bellOcean);stroke:#075474;stroke-width:1.5;stroke-linejoin:round}
-.notification-button .bell-shine{fill:url(#bellShine);stroke:none}
-.notification-button .bell-detail{fill:none;stroke:#087b86;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-.notification-button:hover svg,.notification-button.tilt-live svg{filter:drop-shadow(0 4px 2px rgba(230,255,255,.72)) drop-shadow(0 12px 9px rgba(0,40,61,.44))!important}
-@media(prefers-reduced-motion:reduce){.notification-button svg{transform:none!important;transition:none!important}}
-
-/* Bordas dos quadrados: azul único da marca e relevo que acompanha o mouse. */
-:is(.surface,.form-surface,.modal-card,.profile-card,.summary-card,.guardian-command,.guardian-kpis article,.dashboard-card,.equipment-card,.chart-surface,.history-surface,.guardian-panel,.login-card,.notification-panel,.record,.queue-item){border-color:#075474!important;border-top-color:#075474!important;border-left-color:#075474!important;box-shadow:var(--card-shadow,0 10px 26px rgba(3,54,83,.18),inset 0 1px 2px rgba(225,249,255,.6),inset 0 -3px 7px rgba(5,84,116,.12))!important;transition:transform .13s ease-out,box-shadow .13s ease-out!important}
-@media(hover:hover) and (pointer:fine){:is(.surface,.form-surface,.modal-card,.profile-card,.guardian-command,.guardian-kpis article,.dashboard-card,.equipment-card,.chart-surface,.history-surface,.guardian-panel,.login-card,.notification-panel,.record,.queue-item).edge-live{transform:var(--card-transform,none)!important}}
-@media(prefers-reduced-motion:reduce){:is(.surface,.form-surface,.modal-card,.profile-card,.summary-card,.guardian-command,.guardian-kpis article,.dashboard-card,.equipment-card,.chart-surface,.history-surface,.guardian-panel,.login-card,.notification-panel,.record,.queue-item){--card-shadow:0 10px 26px rgba(3,54,83,.18),inset 0 1px 2px rgba(225,249,255,.6)!important;transform:none!important;transition:none!important}}
-
-/* Logo em perspectiva e verde do sino próximo ao verde vivo da marca. */
-.floating-logo{transform-origin:center;transition:transform .28s cubic-bezier(.2,.8,.2,1);filter:url(#equipaPalette) drop-shadow(0 8px 8px rgba(0,43,66,.28))!important;backface-visibility:hidden}
-.floating-logo.logo-tilt-live{transition:transform 40ms linear}
-.notification-button .bell-detail{stroke:#a5dd22}
-@media(prefers-reduced-motion:reduce){.floating-logo{transform:none!important;transition:none!important}}
-.tag-photo-field{display:grid;gap:8px}.tag-photo-field input{max-width:100%}.tag-photo-field img{display:block;max-width:280px;width:100%;max-height:220px;object-fit:contain;border:2px solid #167da9;border-radius:12px}.tag-photo-field img.hidden{display:none}

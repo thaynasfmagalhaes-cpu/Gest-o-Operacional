@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Configurações | Equipa</title>
+  <link rel="stylesheet" href="ux-agent.css">
+</head>
+<body>
+  <svg class="logo-palette-defs" aria-hidden="true" width="0" height="0" focusable="false"><filter id="equipaPalette" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values=".906 -.053 .147 0 0  .537 .340 .123 0 0  .435 .022 .543 0 0  0 0 0 1 0"/></filter></svg>
+  <header class="topbar">
+    <button id="adminMenuToggle" class="admin-menu-toggle" type="button" aria-label="Abrir menu" aria-controls="adminTabs" aria-expanded="false">☰</button>
+    <img class="topbar-logo" src="equipa-logo-clean.webp" alt="Equipa">
+    <div>
+      <h1 id="settingsTitle">Painel de Controle</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div>
+        <span class="status-dot"></span><strong>Central administrativa</strong>
+        <p>Acompanhe a operação, resolva pendências e gerencie acessos em um só lugar.</p>
+      </div>
+      <button class="button button-primary" data-open="analysis">Sugerir melhoria</button>
+    </section>
+
+    <section class="metrics" aria-label="Resumo administrativo">
+      <article><span>Usuários ativos</span><strong id="metricUsers">—</strong></article>
+      <article><span>Cadastros pendentes</span><strong id="metricRegistrations">—</strong></article>
+      <article class="metric-critical"><span>Alertas operacionais</span><strong id="metricAlerts">—</strong></article>
+      <article class="metric-success"><span>Lembretes ativos</span><strong id="metricReminders">—</strong></article>
+      <article><span>Ciclos em aberto</span><strong id="metricActiveCycles">—</strong></article>
+      <article><span>Liberados para revisão</span><strong id="metricReleased">—</strong></article>
+      <article><span>Sem atualização há 3 dias</span><strong id="metricStale">—</strong></article>
+      <article><span>Conferências pendentes</span><strong id="metricEvidence">—</strong></article>
+    </section>
+
+    <div class="admin-layout"><button id="adminMenuBackdrop" class="admin-menu-backdrop" type="button" aria-label="Fechar menu"></button><nav id="adminTabs" class="tabs" aria-label="Seções de configurações">
+      <a class="tab admin-home-link" href="index.html">← Painel Geral</a>
+      <button class="tab active admin-only" data-tab="overview">Visão operacional</button>
+      <button class="tab admin-only" data-tab="reminders">Notificações <span id="reminderBadge" class="tab-badge">0</span></button>
+      <button class="tab admin-only" data-tab="users">Aprovação de cadastros <span id="pendingBadge" class="tab-badge">0</span></button>
+      <button class="tab admin-only" data-tab="catalogs">Plataformas e equipamentos</button>
+      <button class="tab" data-tab="suggestions">Evolução do Sistema</button>
+      <button class="tab" data-tab="feedback">Informar dificuldade</button>
+      <button class="tab" data-tab="standards">Padrão visual</button>
+    </nav><div class="admin-content">
+
+    <section id="overview" class="panel tab-panel admin-only">
+      <div class="section-heading"><div><span class="eyebrow">CENTRO DE DECISÃO</span><h2>Visão operacional</h2><p class="panel-description">Pendências, gargalos e alterações recentes com dados do Equipa.</p></div><span id="overviewUpdated" class="overview-updated"></span></div>
+      <article class="overview-box"><div class="overview-box-head"><h3>Ações prioritárias</h3><button class="text-link" data-jump="users" type="button">Gerenciar acessos →</button></div><div id="adminPriorities"></div></article>
+    </section>
+
+    <section id="reminders" class="panel tab-panel hidden">
+      <div class="section-heading">
+        <div><span class="eyebrow">LEMBRETES ADMINISTRATIVOS</span><h2>Notificações e pendências</h2><p class="panel-description">Registre itens que precisam ser lembrados e acompanhe seus prazos.</p></div>
+      </div>
+      <form id="reminderForm" class="reminder-form">
+        <label>Título<input name="titulo" required placeholder="Ex.: Verificar certificação próxima do vencimento"></label>
+        <label>Data do lembrete<input name="data_lembrete" type="date"></label>
+        <label>Prioridade<select name="prioridade"><option>Normal</option><option>Alta</option><option>Crítica</option></select></label>
+        <label class="reminder-description">Descrição<input name="descricao" placeholder="Detalhes, TAG, OS ou responsável"></label>
+        <button id="reminderSubmit" class="button button-primary" type="submit">Criar notificação</button>
+      </form>
+      <div id="reminderList" class="reminder-list"><p class="empty">Carregando notificações…</p></div>
+    </section>
+
+    <section id="users" class="panel tab-panel hidden">
+      <div class="section-heading">
+        <div><span class="eyebrow">CONTROLE DE ACESSO</span><h2>Cadastros de usuários</h2><p class="panel-description">Os novos cadastros aparecem aqui aguardando sua aprovação.</p></div>
+        <div class="user-toolbar"><input id="userSearch" type="search" aria-label="Buscar cadastro" placeholder="Buscar nome, e-mail ou matrícula"><button id="refreshUsers" class="button button-secondary" type="button">Atualizar lista</button></div>
+      </div>
+      <div class="recovery-requests"><h3>Solicitações de redefinição</h3><div id="recoveryRequests"></div><p id="resetResult" class="reset-result hidden" role="status"></p></div><div id="userList" class="user-list"><p class="empty">Carregando cadastros…</p></div>
+    </section>
+
+    <section id="suggestions" class="panel tab-panel hidden">
+      <div class="section-heading">
+        <div><span class="eyebrow">AUDITORIA</span><h2>Recomendações priorizadas</h2></div>
+        <select id="statusFilter" aria-label="Filtrar por status"><option value="">Todos os status</option><option>Pendente</option><option>Aprovada</option><option>Ajuste solicitado</option><option>Implementada</option><option>Rejeitada</option></select>
+      </div>
+      <div id="suggestionList" class="suggestion-list"><p class="empty">Carregando sugestões…</p></div>
+    </section>
+
+    <section id="catalogs" class="panel tab-panel hidden admin-only">
+      <div class="section-heading"><div><span class="eyebrow">CADASTRO OPERACIONAL</span><h2>Plataformas, destinos e equipamentos</h2><p class="panel-description">As opções cadastradas aqui aparecem automaticamente no formulário de novo acompanhamento.</p></div></div>
+      <div class="catalog-grid"><form id="destinationCatalogForm" class="catalog-form"><h3>＋ Adicionar plataforma ou destino</h3><label>Nome padronizado<input name="nome" required placeholder="Ex.: P-81 ou Base Macaé"></label><label>Tipo<select name="tipo"><option>Plataforma</option><option>Destino operacional</option><option>Base</option><option>Fornecedor</option></select></label><button class="button button-primary">Cadastrar plataforma/destino</button></form><form id="equipmentCatalogForm" class="catalog-form"><h3>＋ Adicionar equipamento</h3><label>Nome padronizado<input name="nome" required placeholder="Ex.: Bomba Centrífuga"></label><button class="button button-primary">Cadastrar equipamento</button></form></div>
+      <div class="catalog-remove-grid"><form id="removeDestinationForm" class="catalog-remove-form"><label>Remover plataforma ou destino<select id="removeDestinationSelect" required><option value="">Selecione</option></select></label><button class="button button-danger" type="submit">Remover destino</button></form><form id="removeEquipmentForm" class="catalog-remove-form"><label>Remover equipamento<select id="removeEquipmentSelect" required><option value="">Selecione</option></select></label><button class="button button-danger" type="submit">Remover equipamento</button></form></div>
+    </section>
+
+    <section id="feedback" class="panel tab-panel hidden">
+      <div class="section-heading"><div><span class="eyebrow">ESCUTA ATIVA</span><h2>Informar uma dificuldade</h2></div></div>
+      <form id="feedbackForm" class="form-grid">
+        <label>Tela ou área<input name="tela" placeholder="Ex.: Acompanhamentos" required></label>
+        <label>Avaliação<select name="avaliacao"><option value="">Sem avaliação</option><option value="5">5 — Muito fácil</option><option value="4">4 — Fácil</option><option value="3">3 — Regular</option><option value="2">2 — Difícil</option><option value="1">1 — Muito difícil</option></select></label>
+        <label class="full">O que dificultou sua atividade?<textarea name="comentario" rows="5" placeholder="Descreva o que tentou fazer e onde encontrou dificuldade." required></textarea></label>
+        <div class="full actions"><button class="button button-primary">Enviar feedback</button></div>
+      </form>
+    </section>
+
+    <section id="standards" class="panel tab-panel hidden">
+      <div class="section-heading"><div><span class="eyebrow">DESIGN SYSTEM</span><h2>Regras visuais do projeto</h2></div></div>
+      <div id="standardList" class="standard-list"><p class="empty">Carregando padrões…</p></div>
+    </section>
+    </div></div>
+  </main>
+
+  <dialog id="analysisDialog">
+    <form id="analysisForm">
+      <div class="dialog-heading"><div><span class="eyebrow">NOVA ANÁLISE</span><h2>Analisar experiência</h2></div><button type="button" class="icon-button" data-close aria-label="Fechar">×</button></div>
+      <div class="form-grid">
+        <label>Tela<input name="tela" required placeholder="Nome da tela"></label>
+        <label>Prioridade<select name="prioridade"><option>Baixa</option><option selected>Média</option><option>Alta</option><option>Crítica</option></select></label>
+        <label>Categoria<select name="categoria"><option>Usabilidade</option><option>Acessibilidade</option><option>Consistência</option><option>Conteúdo</option><option>Fluxo</option></select></label>
+        <label>Impacto esperado<input name="impacto" placeholder="Ex.: reduzir erros no cadastro"></label>
+        <label class="full">Problema identificado<textarea name="problema" rows="3" required></textarea></label>
+        <label class="full">Recomendação<textarea name="recomendacao" rows="3" required></textarea></label>
+      </div>
+      <div class="actions"><button type="button" class="button button-secondary" data-close>Cancelar</button><button class="button button-primary">Registrar sugestão</button></div>
+    </form>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="mobile-api.js"></script>
+  <script src="ux-agent.js"></script>
+  <script src="microinteractions.js"></script>
+  <script src="native-features.js"></script>
+</body>
+</html>
