@@ -1,4 +1,4 @@
-import {parseTagAnswer,parseEquipmentAnswer} from './tag-vision.js';
+import {recognizePhoto} from './photo-recognition.js';
 const encoder=new TextEncoder();
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8'}});
 const text=v=>String(v??'').trim();
@@ -58,14 +58,7 @@ if(path==='/api/identificar-equipamento'&&method==='POST'){
   if(typeof image!=='string'||!/^data:image\/jpeg;base64,[A-Za-z0-9+/=]+$/.test(image)||image.length>1900000)return json({erro:'Envie uma foto JPG válida de até 1,4 MB para leitura.'},400);
   const catalog=(await env.DB.prepare('SELECT nome FROM catalogo_equipamentos WHERE ativo=1 ORDER BY nome').all()).results.map(row=>row.nome);
   try{
-    const model='@cf/moondream/moondream3.1-9B-A2B';
-    const [tagResponse,equipmentResponse]=await Promise.all([
-      env.AI.run(model,{task:'query',image,question:'Read only the asset identification code printed on a physical sticker attached to the equipment. Reply with the exact letters and digits from the sticker, or NONE if no code is readable. No explanation, no guesses.',stream:false,reasoning:false,temperature:0,max_tokens:80}),
-      env.AI.run(model,{task:'query',image,question:`What kind of industrial equipment is shown? Reply with only one matching catalog name or NONE: ${catalog.join(', ')}. A handheld angle grinder is an Esmerilhadeira.`,stream:false,reasoning:false,temperature:0,max_tokens:80})
-    ]);
-    const rawTag=tagResponse?.answer??tagResponse?.response??'',rawEquipment=equipmentResponse?.answer??equipmentResponse?.response??'';
-    const tag=parseTagAnswer(rawTag),equipamento=parseEquipmentAnswer(rawEquipment,catalog);
-    return json({tag,equipamento,aviso:tag||equipamento?'Confira os dados encontrados na foto.':'A foto não foi identificada. Aproxime a câmera da TAG e tente novamente.'});
+    return json(await recognizePhoto(env.AI,image,catalog));
   }catch(error){console.error('Falha na leitura da foto:',error);return json({erro:'Não foi possível analisar a foto agora. Preencha os campos manualmente.'},503)}
 }
 if(path==='/api/solicitacoes-senha'&&method==='GET'){if(!canAdmin(user))return json({erro:'Acesso restrito.'},403);return json((await env.DB.prepare("SELECT s.id,s.email,s.criado_em,u.nome FROM solicitacoes_senha s LEFT JOIN usuarios u ON lower(u.email)=lower(s.email) WHERE s.status='Pendente' ORDER BY s.id DESC LIMIT 50").all()).results)}
